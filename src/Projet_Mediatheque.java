@@ -10,6 +10,7 @@ public class Projet_Mediatheque {
 
         Adherent per = new Adherent("Nom", "Prenom", LocalDate.now(), "123@.com", "123456", 456645, 0606060606);
         System.out.println(per.toString());
+        //ON MIDIFIE LE PROJETTTTTTTTTTT
     }
     
 }
