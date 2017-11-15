@@ -1,6 +1,5 @@
-package Personne;
+
 import java.time.*;
-import Operations.*;
 
 
 public class Adherent extends Personne{

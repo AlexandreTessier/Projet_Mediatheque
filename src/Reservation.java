@@ -1,7 +1,5 @@
-package Operations;
+
 import java.time.*;
-import Personne.*;
-import Ouvrage.*;
 
 public class Reservation {
     private Adherent emprunteur;

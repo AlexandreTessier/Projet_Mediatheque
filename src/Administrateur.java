@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Personne;
+
 
 /**
  *
  * @author Alexandre
  */
-public class Auteur {
+public class Administrateur {
     
 }

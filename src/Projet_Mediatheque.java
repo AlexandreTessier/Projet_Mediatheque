@@ -1,5 +1,4 @@
-package Main;
-import Personne.*;
+
 import java.time.*;
 
 public class Projet_Mediatheque {
