@@ -14,6 +14,6 @@ public class Reservation {
     }
     
     public String toString(){
-        return "Emprunt";
+        return "Reservation";
     }
 }
