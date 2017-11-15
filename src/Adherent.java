@@ -1,6 +1,4 @@
-
 import java.time.*;
-
 
 public class Adherent extends Personne{
     private String email;
