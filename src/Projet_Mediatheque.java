@@ -1,15 +1,40 @@
 import java.time.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Projet_Mediatheque {
 
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-            //public Adherent(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP, int pId, int pTel){
-
-        Adherent per = new Adherent("Nom", "Prenom", LocalDate.now(), "123@.com", "123456", 456645, 0606060606);
-        System.out.println(per.toString());
-        //ON MIDIFIE LE PROJETTTTTTTTTTT
+    public static void main(String[] args) throws IOException {
+        System.out.println("Rentrez votre mail puis votre MDP");
+        String Mail = Lire.S();
+        String MDP = Lire.S();
+        String Chemin="C:\\Users\\"+System.getProperty("user.name")+"\\Desktop";
+        String Nom="Projet_Mediatheque";
+        FileInputStream fichier = new FileInputStream(new File(Chemin+"\\"+Nom+".xlsx"));
+        XSSFWorkbook wb = new XSSFWorkbook(fichier);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        FormulaEvaluator formulaEvaluator=wb.getCreationHelper().createFormulaEvaluator();
+        int iLigne=1;
+        Boolean Confirmation=false;
+        while(Confirmation){
+            Row Ligne = sheet.getRow(iLigne);
+            Cell Cell=Ligne.getCell(3);
+            if(Cell.getStringCellValue() == Mail){
+                Cell=Ligne.getCell(4);
+                if(Cell.getStringCellValue() == MDP){
+                    Confirmation = true;
+                }
+            }else{
+                iLigne++;
+            }
+        }
+        System.out.println("Vous êtes bien connecté");
     }
-    
 }

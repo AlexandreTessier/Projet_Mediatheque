@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.*;
+import org.apache.poi.xssf.usermodel.*;
 
 public class Adherent extends Personne{
     private String email;
