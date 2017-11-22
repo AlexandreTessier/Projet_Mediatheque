@@ -4,7 +4,7 @@ public class Bibliothecaire extends Personne{
     private String email;
     private String mot_de_passe;
     
-    public Bibliothécaire(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP){
+    public Bibliothecaire(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP){
         this.nom=pNom;
         this.prenom=pPrenom;
         this.date_Naissance=pDate;
