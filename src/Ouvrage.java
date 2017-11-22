@@ -8,6 +8,7 @@ public abstract class Ouvrage
 	protected boolean disponibilite;
 	protected Auteur auteur;
 	protected String editeur;
+	protected String genre;
 	//Methode de la classe
 	public abstract String toString();
 }
