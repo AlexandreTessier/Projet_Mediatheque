@@ -3,11 +3,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Projet_Mediatheque {
 
@@ -17,7 +12,7 @@ public class Projet_Mediatheque {
     }
     
     public static int connexion() throws FileNotFoundException, IOException{
-        // Boolean qui vérifie si la connexion est effectuée ou non.
+        /*// Boolean qui vérifie si la connexion est effectuée ou non.
         Boolean Connexion = false;
         // Entier qui vérifie de façon ternaire les identifiants de l'utilisateur.
         int Confirmation=0;
@@ -73,6 +68,6 @@ public class Projet_Mediatheque {
                     break;
             }
         }while(Connexion);
-        return Confirmation;
+        return Confirmation;*/
     }
 }
