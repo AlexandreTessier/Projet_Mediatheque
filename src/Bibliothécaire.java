@@ -35,6 +35,6 @@ public class Bibliothécaire extends Personne{
     
     public void supprimer_Adherent(){
         
-    }gfdsqsdfghjklkjhgfdsq
+    }
 }
-public void
+
