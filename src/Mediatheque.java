@@ -11,7 +11,8 @@ public class Mediatheque
         private ArrayList<Adherent> Adherents;
         private ArrayList<Bibliothecaire> Bibliothecaires;
         private ArrayList<Auteur> Auteurs;
-        private ArrayList<Ouvrage> Ouvrages;
+        private ArrayList<Roman> Romans;
+        private ArrayList<CD> CDs;
         private ArrayList<Emprunt> Emprunts;
         private ArrayList<Reservation> Reservations;
         public Mediatheque() throws IOException
@@ -19,15 +20,18 @@ public class Mediatheque
                 this.Adherents = new ArrayList();
                 this.Bibliothecaires = new ArrayList();
                 this.Auteurs = new ArrayList();
-                this.Ouvrages = new ArrayList();
+                this.Romans = new ArrayList();
+                this.CDs = new ArrayList();
                 this.Emprunts = new ArrayList();
                 this.Reservations = new ArrayList();
                 this.recupeAdh();
                 this.recupeBib();
                 this.recupeAut();
+                this.recupeRom();
         }
         
-        public void recupeAdh(){
+        public void recupeAdh()
+        {
                 try
                 {
                         File f = new File ("Adherents.txt");
@@ -40,7 +44,8 @@ public class Mediatheque
                                 while (line != null)
                                 {
                                         String[] Temp = line.split("\t");
-                                        for(String str : Temp){
+                                        for(String str : Temp)
+                                        {
                                                 System.out.print(str+"\t");
                                         }
                                         String[] pDate = Temp[2].split("-");
@@ -70,7 +75,8 @@ public class Mediatheque
                 }
         }
         
-        public void recupeBib(){
+        public void recupeBib()
+        {
                 try
                 {
                         File f = new File ("Bibliothecaires.txt");
@@ -83,7 +89,8 @@ public class Mediatheque
                                 while (line != null)
                                 {
                                         String[] Temp = line.split("\t");
-                                        for(String str : Temp){
+                                        for(String str : Temp)
+                                        {
                                                 System.out.print(str+"\t");
                                         }
                                         String[] pDate = Temp[2].split("-");
@@ -109,7 +116,8 @@ public class Mediatheque
                 }
         }
         
-        public void recupeAut(){
+        public void recupeAut()
+        {
                 try
                 {
                         File f = new File ("Auteurs.txt");
@@ -122,7 +130,49 @@ public class Mediatheque
                                 while (line != null)
                                 {
                                         String[] Temp = line.split("\t");
-                                        for(String str : Temp){
+                                        for(String str : Temp)
+                                        {
+                                                System.out.print(str+"\t");
+                                        }
+                                        String[] pDate = Temp[2].split("-");
+                                        int year = Integer.parseInt(pDate[0]);
+                                        int month = Integer.parseInt(pDate[1]);
+                                        int day = Integer.parseInt(pDate[2]);
+                                        LocalDate date = LocalDate.of(year, month, day);
+                                        int nombrepubli = Integer.parseInt(Temp[3]);
+                                        Auteur Aut = new Auteur(Temp[0], Temp[1], date, nombrepubli, Temp[4]);
+                                        this.Auteurs.add(Aut);
+                                        line = br.readLine();
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (FileNotFoundException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        public void recupeRom()
+        {
+                try
+                {
+                        File f = new File ("Auteurs.txt");
+                        FileReader fr = new FileReader (f);
+                        BufferedReader br = new BufferedReader (fr);
+                        try
+                        {
+                                String line = br.readLine();
+                                line = br.readLine();
+                                while (line != null)
+                                {
+                                        String[] Temp = line.split("\t");
+                                        for(String str : Temp)
+                                        {
                                                 System.out.print(str+"\t");
                                         }
                                         String[] pDate = Temp[2].split("-");
