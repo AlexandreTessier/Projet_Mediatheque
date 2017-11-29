@@ -139,8 +139,8 @@ public class Mediatheque
                                         int month = Integer.parseInt(pDate[1]);
                                         int day = Integer.parseInt(pDate[2]);
                                         LocalDate date = LocalDate.of(year, month, day);
-                                        int nombrepubli = Integer.parseInt(Temp[3]);
-                                        Auteur Aut = new Auteur(Temp[0], Temp[1], date, nombrepubli, Temp[4]);
+                                        int num = Integer.parseInt(Temp[3]);
+                                        Auteur Aut = new Auteur(Temp[0], Temp[1], date, num, Temp[4]);
                                         this.Auteurs.add(Aut);
                                         line = br.readLine();
                                 }
@@ -161,7 +161,7 @@ public class Mediatheque
         {
                 try
                 {
-                        File f = new File ("Auteurs.txt");
+                        File f = new File ("Romans&.txt");
                         FileReader fr = new FileReader (f);
                         BufferedReader br = new BufferedReader (fr);
                         try

@@ -9,7 +9,6 @@ public abstract class Ouvrage
 	protected Auteur auteur;
 	protected String editeur;
 	protected String genre;
-        protected String type_Ouvrage;
 	//Methode de la classe
 	public abstract String toString();
 }

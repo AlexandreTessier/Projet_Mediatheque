@@ -1,14 +1,14 @@
 import java.time.*;
 
 public class Auteur extends Personne{
-    private int nombre_publications;
+    private int numero;
     private String style_Artistique;
     
     public Auteur(String pNom, String pPrenom, LocalDate pDate, int pNombre, String pStyle){
         this.nom=pNom;
         this.prenom=pPrenom;
         this.date_Naissance=pDate;
-        this.nombre_publications=pNombre;
+        this.numero=pNombre;
         this.style_Artistique=pStyle;
     }
     
