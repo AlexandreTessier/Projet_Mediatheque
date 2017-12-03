@@ -1,1 +1,2 @@
-Numéro	Titre	PrenomAuteur	NomAuteur	DateNaissanceAuteur	Disponibilité	Editeur	NombrePages	Genre
+Numéro	Titre	numAut	Editeur	NombrePages	Genre	Disponibilité
+01	Blablabla	01	Moi	42	Fantastique	true

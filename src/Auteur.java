@@ -17,4 +17,8 @@ public class Auteur extends Personne{
         return "Auteur";
     }
     
+    public int getNum(){
+            return this.numero;
+    }
+    
 }

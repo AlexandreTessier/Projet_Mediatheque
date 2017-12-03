@@ -5,12 +5,12 @@ public class CD extends Ouvrage
 {
 	private ArrayList<String> listeChansons;
     
-	public CD(int pNum, String pTitre, Auteur pAuteur, String pEditeur, ArrayList<String> pListe) 
+	public CD(int pNum, String pTitre, Auteur pAuteur, String pEditeur, boolean pDispo, ArrayList<String> pListe) 
 	{
 		this.numero=pNum;
 		this.titre=pTitre;
 		this.auteur=pAuteur;
-		this.disponibilite=true;
+		this.disponibilite=pDispo;
 		this.editeur=pEditeur;
 		this.listeChansons=pListe;
 	}
