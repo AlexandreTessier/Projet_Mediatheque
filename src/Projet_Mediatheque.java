@@ -30,10 +30,10 @@ public class Projet_Mediatheque
 	{
 		String os = System.getProperty("os.name");
 		if(os.contains("Windows"))
-		{
+		{/*
 			System.out.println("Va te faire foutre");
 			Runtime.getRuntime().exec("cls");
-		}
+		*/}
 		else
 		{
 			System.out.print("\u001b[2J" + "\u001b[H");
