@@ -19,4 +19,7 @@ public class CD extends Ouvrage
 	{
 		return "CD";
 	}
+        public int getNum(){
+                return this.numero;
+        }
 }

@@ -1,0 +1,2 @@
+Numéro_Adhérent	Numéro_Ouv	Type_Ouvrage
+01	01	Roman

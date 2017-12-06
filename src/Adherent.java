@@ -26,4 +26,7 @@ public class Adherent extends Personne
 	{
 		return "Adhérent n° : " + num_identifiant + " : " + nom + " " + prenom;
 	}
+        public int getNum(){
+                return this.num_identifiant;
+        }
 }

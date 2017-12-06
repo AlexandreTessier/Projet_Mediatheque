@@ -11,4 +11,5 @@ public abstract class Ouvrage
 	protected String genre;
 	//Methode de la classe
 	public abstract String toString();
+        public abstract int getNum();
 }

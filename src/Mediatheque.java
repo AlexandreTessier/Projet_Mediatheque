@@ -29,6 +29,7 @@ public class Mediatheque
                 this.recupeAut();
                 this.recupeRom();
                 this.recupeCD();
+                this.recupeEmp();
         }
         
         public void recupeAdh()
@@ -222,6 +223,84 @@ public class Mediatheque
                 }
         }
         
+        public void recupeEmp()
+        {
+                try
+                {
+                        File f = new File ("Emprunts.txt");
+                        FileReader fr = new FileReader (f);
+                        BufferedReader br = new BufferedReader (fr);
+                        try
+                        {
+                                String line = br.readLine();
+                                line = br.readLine();
+                                while (line != null)
+                                {
+                                        String[] Temp = line.split("\t");
+                                        Adherent pAd = this.rechercheAdherent(Integer.parseInt(Temp[0]));
+                                        Ouvrage pOuv = this.rechercheOuvrage(Integer.parseInt(Temp[1]), Temp[4]);
+                                        String[] pDate = Temp[2].split("-");
+                                        int year = Integer.parseInt(pDate[0]);
+                                        int month = Integer.parseInt(pDate[1]);
+                                        int day = Integer.parseInt(pDate[2]);
+                                        LocalDate dateEmp = LocalDate.of(year, month, day);
+                                        pDate = Temp[3].split("-");
+                                        year = Integer.parseInt(pDate[0]);
+                                        month = Integer.parseInt(pDate[1]);
+                                        day = Integer.parseInt(pDate[2]);
+                                        LocalDate dateRet = LocalDate.of(year, month, day);
+                                        Emprunt Emp = new Emprunt(pAd, pOuv, dateEmp, dateRet);
+                                        this.Emprunts.add(Emp);
+                                        line = br.readLine();
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (FileNotFoundException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void recupeResa()
+        {
+                try
+                {
+                        File f = new File ("Reservations.txt");
+                        FileReader fr = new FileReader (f);
+                        BufferedReader br = new BufferedReader (fr);
+                        try
+                        {
+                                String line = br.readLine();
+                                line = br.readLine();
+                                while (line != null)
+                                {
+                                        String[] Temp = line.split("\t");
+                                        Adherent pAd = this.rechercheAdherent(Integer.parseInt(Temp[0]));
+                                        Ouvrage pOuv = this.rechercheOuvrage(Integer.parseInt(Temp[1]), Temp[2]);
+                                        Reservation Resa = new Reservation(pAd, pOuv);
+                                        this.Reservations.add(Resa);
+                                        line = br.readLine();
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (FileNotFoundException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
         public Auteur rechercheAuteur(int pnum)
         {
                 for(int i=0; i<this.Auteurs.size(); i++){
@@ -229,6 +308,38 @@ public class Mediatheque
                         {
                                 return this.Auteurs.get(i);
                         }
+                }
+                return null;
+        }
+        public Adherent rechercheAdherent(int pnum)
+        {
+                for(int i=0; i<this.Adherents.size(); i++){
+                        if(pnum == this.Adherents.get(i).getNum())
+                        {
+                                return this.Adherents.get(i);
+                        }
+                }
+                return null;
+        }
+        public Ouvrage rechercheOuvrage(int pnum, String pGenre)
+        {
+                if(pGenre.equals("Roman"))
+                {
+                        for(int i=0; i<this.Romans.size(); i++){
+                                if(pnum == this.Romans.get(i).getNum())
+                                {
+                                        return this.Romans.get(i);
+                                }
+                        }
+                }
+                else
+                {
+                       for(int i=0; i<this.CDs.size(); i++){
+                                if(pnum == this.CDs.get(i).getNum())
+                                {
+                                        return this.CDs.get(i);
+                                }
+                        } 
                 }
                 return null;
         }

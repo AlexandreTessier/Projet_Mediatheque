@@ -19,4 +19,7 @@ public class Roman extends Ouvrage
 	{
 		return "Titre : " + this.titre + "; Genre : " + this.genre;
 	}
+        public int getNum(){
+                return this.numero;
+        }
 }
