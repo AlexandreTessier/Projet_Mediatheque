@@ -33,7 +33,35 @@ public class Mediatheque
                 this.recupeCD();
                 this.recupeEmp();
                 this.recupeResa();
-                
+        }
+        
+        public ArrayList<Adherent> getAdh()
+        {
+                return this.Adherents;
+        }
+        public ArrayList<Bibliothecaire> getBib()
+        {
+                return this.Bibliothecaires;
+        }
+        public ArrayList<Auteur> getAut()
+        {
+                return this.Auteurs;
+        }
+        public ArrayList<Roman> getRom()
+        {
+                return this.Romans;
+        }
+        public ArrayList<CD> getCD()
+        {
+                return this.CDs;
+        }
+        public ArrayList<Emprunt> getEmp()
+        {
+                return this.Emprunts;
+        }
+        public ArrayList<Reservation> getResa()
+        {
+                return this.Reservations;
         }
         
         public void recupeAdh()
@@ -615,6 +643,10 @@ public class Mediatheque
                         } 
                 }
                 return null;
+        }
+        
+        public void ajouteAdh(Adherent Adh){
+                this.Adherents.add(Adh);
         }
         
 }
