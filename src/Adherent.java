@@ -26,7 +26,32 @@ public class Adherent extends Personne
 	{
 		return "Adhérent n° : " + num_identifiant + " : " + nom + " " + prenom;
 	}
-        public int getNum(){
+        public String getNom()
+        {
+                return this.nom;
+        }
+        public String getPrenom()
+        {
+                return this.prenom;
+        }
+        public LocalDate getdate()
+        {
+                return this.date_Naissance;
+        }
+        public String getMail()
+        {
+                return this.email;
+        }
+        public String getMDP()
+        {
+                return this.mdP;
+        }
+        public int getNum()
+        {
                 return this.num_identifiant;
+        }
+        public int getTel()
+        {
+                return this.num_tel;
         }
 }

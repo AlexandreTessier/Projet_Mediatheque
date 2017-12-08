@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.time.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Mediatheque
@@ -30,6 +32,7 @@ public class Mediatheque
                 this.recupeRom();
                 this.recupeCD();
                 this.recupeEmp();
+                this.ecritureAdh();
         }
         
         public void recupeAdh()
@@ -301,6 +304,45 @@ public class Mediatheque
                 }
         }
         
+        public void ecritureAdh(){
+                try
+                {
+                        File f = new File ("Adherents.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Nom\tPrenom\tDate_Naissance\tMail\tMdP\tID\tTel";
+                                        System.out.println(line);
+                                br.write(line);
+                                for(int i=0; i<this.Adherents.size(); i++)
+                                {
+                                        //Nom	Prenom	Date_Naissance	Mail	MdP	ID	Tel
+                                        br.newLine();
+                                        String pNom = this.Adherents.get(i).getNom();
+                                        String pPrenom = this.Adherents.get(i).getPrenom();
+                                        String pDate = this.Adherents.get(i).getdate().toString();
+                                        String pMail = this.Adherents.get(i).getMail();
+                                        String pMDP = this.Adherents.get(i).getMDP();
+                                        String pID = Integer.toString(this.Adherents.get(i).getNum());
+                                        String pTel = Integer.toString(this.Adherents.get(i).getTel());
+                                        line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP+"\t"+pID+"\t"+pTel;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
         public Auteur rechercheAuteur(int pnum)
         {
                 for(int i=0; i<this.Auteurs.size(); i++){
@@ -343,4 +385,5 @@ public class Mediatheque
                 }
                 return null;
         }
+        
 }
