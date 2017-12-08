@@ -6,10 +6,10 @@ public class Adherent extends Personne
 	private String email;
 	private String mdP;
 	private int num_identifiant;
-	private int num_tel;
+	private String num_tel;
 	private Emprunt[] liste_Emprunts;
 	//Construction
-	public Adherent(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP, int pId, int pTel)
+	public Adherent(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP, int pId, String pTel)
 	{
 		this.nom=pNom;
 		this.prenom=pPrenom;
@@ -50,7 +50,7 @@ public class Adherent extends Personne
         {
                 return this.num_identifiant;
         }
-        public int getTel()
+        public String getTel()
         {
                 return this.num_tel;
         }

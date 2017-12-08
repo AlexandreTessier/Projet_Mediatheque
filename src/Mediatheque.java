@@ -55,8 +55,7 @@ public class Mediatheque
                                         int day = Integer.parseInt(pDate[2]);
                                         LocalDate date = LocalDate.of(year, month, day);
                                         int iD = Integer.parseInt(Temp[5]);
-                                        int tel = Integer.parseInt(Temp[6]);
-                                        Adherent Ad = new Adherent(Temp[0], Temp[1], date, Temp[3], Temp[4], iD, tel);
+                                        Adherent Ad = new Adherent(Temp[0], Temp[1], date, Temp[3], Temp[4], iD, Temp[6]);
                                         this.Adherents.add(Ad);
                                         
                                         System.out.println();
@@ -325,7 +324,7 @@ public class Mediatheque
                                         String pMail = this.Adherents.get(i).getMail();
                                         String pMDP = this.Adherents.get(i).getMDP();
                                         String pID = Integer.toString(this.Adherents.get(i).getNum());
-                                        String pTel = Integer.toString(this.Adherents.get(i).getTel());
+                                        String pTel = this.Adherents.get(i).getTel();
                                         line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP+"\t"+pID+"\t"+pTel;
                                         br.write(line);
                                 }
