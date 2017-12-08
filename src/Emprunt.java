@@ -38,16 +38,37 @@ public class Emprunt
                         this.type_Ouvrage="CD";
                 }
         }
-	
-	public void prolonge()
-	{
-		this.date_Retour=this.date_Retour.plusDays(28);
-	}
         //Methode toString()
 	public String toString()
 	{
 		return "[Emprunt: Adhérent: "+this.emprunteur.getNum()+", Ouvrage: "+this.emprunte.getNum()+"\n"
                         + "Date 1: "+this.date_Emprunt+", Date 2: "+this.date_Retour+"\n"
                         + "Type :"+this.type_Ouvrage+"]"; 
+	}
+        
+        public Adherent getAdh()
+        {
+                return this.emprunteur;
+        }
+        public Ouvrage getOuv()
+        {
+                return this.emprunte;
+        }
+        public LocalDate getDateE()
+        {
+                return this.date_Emprunt;
+        }
+        public LocalDate getDateR()
+        {
+                return this.date_Retour;
+        }
+        public String getType()
+        {
+                return this.type_Ouvrage;
+        }
+        
+        public void prolonge()
+	{
+		this.date_Retour=this.date_Retour.plusDays(28);
 	}
 }

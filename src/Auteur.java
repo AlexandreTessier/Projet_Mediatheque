@@ -5,11 +5,11 @@ public class Auteur extends Personne{
     private String style_Artistique;
     
     public Auteur(String pNom, String pPrenom, LocalDate pDate, int pNombre, String pStyle){
-        this.nom=pNom;
-        this.prenom=pPrenom;
-        this.date_Naissance=pDate;
-        this.numero=pNombre;
-        this.style_Artistique=pStyle;
+            this.nom=pNom;
+            this.prenom=pPrenom;
+            this.date_Naissance=pDate;
+            this.numero=pNombre;
+            this.style_Artistique=pStyle;
     }
     
     @Override
@@ -17,8 +17,24 @@ public class Auteur extends Personne{
         return "Auteur";
     }
     
-    public int getNum(){
+    public String getNom()
+    {
+            return this.nom;
+    }
+    public String getPrenom()
+    {
+            return this.prenom;
+    }
+    public LocalDate getdate()
+    {
+            return this.date_Naissance;
+    }
+    public int getNum()
+    {
             return this.numero;
     }
-    
+    public String getStyle()
+    {
+            return this.style_Artistique;
+    }
 }

@@ -1,2 +1,3 @@
-Numéro	Titre	numAut	Editeur	Disponibilité	Liste_Chansons
-01	Titre	01	Moi	true	01zz	02zz	03zz	04zz	05zz	06zz	07zz	08zz	09zz
+NumÃ©ro	Titre	numAut	Editeur	DisponibilitÃ©	Liste_Chansons
+1	Blablabla	1	Edit	false	01a	02ze	03zer	04ff	05femf
+1	Blablabla	1	Edit	true	01a	02ze	03zer	04ff	05femf

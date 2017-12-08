@@ -32,7 +32,14 @@ public class Mediatheque
                 this.recupeRom();
                 this.recupeCD();
                 this.recupeEmp();
+                this.recupeResa();
                 this.ecritureAdh();
+                this.ecritureBib();
+                this.ecritureAut();
+                this.ecritureRom();
+                this.ecritureCD();
+                this.ecritureEmp();
+                this.ecritureResa();
         }
         
         public void recupeAdh()
@@ -166,7 +173,7 @@ public class Mediatheque
                                         int pNum = Integer.parseInt(Temp[0]);
                                         Auteur pAut = this.rechercheAuteur(Integer.parseInt(Temp[2]));
                                         int nombrePages = Integer.parseInt(Temp[4]);
-                                        boolean bool = Boolean.getBoolean(Temp[6]);
+                                        boolean bool = Boolean.parseBoolean(Temp[6]);
                                         Roman Rom = new Roman(pNum, Temp[1], pAut, Temp[3], nombrePages, Temp [5], bool);
                                         this.Romans.add(Rom);
                                         line = br.readLine();
@@ -201,7 +208,7 @@ public class Mediatheque
                                         String[] Temp = line.split("\t");
                                         int pNum = Integer.parseInt(Temp[0]);
                                         Auteur pAut = this.rechercheAuteur(Integer.parseInt(Temp[2]));
-                                        boolean bool = Boolean.getBoolean(Temp[4]);
+                                        boolean bool = Boolean.parseBoolean(Temp[4]);
                                         ArrayList<String> Liste = new ArrayList();
                                         for(int i=5; i<Temp.length; i++)
                                         {
@@ -312,11 +319,9 @@ public class Mediatheque
                         try
                         {
                                 String line = "Nom\tPrenom\tDate_Naissance\tMail\tMdP\tID\tTel";
-                                        System.out.println(line);
                                 br.write(line);
                                 for(int i=0; i<this.Adherents.size(); i++)
                                 {
-                                        //Nom	Prenom	Date_Naissance	Mail	MdP	ID	Tel
                                         br.newLine();
                                         String pNom = this.Adherents.get(i).getNom();
                                         String pPrenom = this.Adherents.get(i).getPrenom();
@@ -326,6 +331,221 @@ public class Mediatheque
                                         String pID = Integer.toString(this.Adherents.get(i).getNum());
                                         String pTel = this.Adherents.get(i).getTel();
                                         line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP+"\t"+pID+"\t"+pTel;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureBib(){
+                try
+                {
+                        File f = new File ("Bibliothecaires.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Nom\tPrenom\tDate_Naissance\tMail\tMdP";
+                                br.write(line);
+                                for(int i=0; i<this.Bibliothecaires.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNom = this.Bibliothecaires.get(i).getNom();
+                                        String pPrenom = this.Bibliothecaires.get(i).getPrenom();
+                                        String pDate = this.Bibliothecaires.get(i).getdate().toString();
+                                        String pMail = this.Bibliothecaires.get(i).getMail();
+                                        String pMDP = this.Bibliothecaires.get(i).getMDP();
+                                        line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureAut(){
+                try
+                {
+                        File f = new File ("Auteurs.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Nom\tPrenom\tDate_Naissance\tNuméro\tStyle";
+                                br.write(line);
+                                for(int i=0; i<this.Auteurs.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNom = this.Auteurs.get(i).getNom();
+                                        String pPrenom = this.Auteurs.get(i).getPrenom();
+                                        String pDate = this.Auteurs.get(i).getdate().toString();
+                                        String pID = Integer.toString(this.Auteurs.get(i).getNum());
+                                        String pStyle = this.Auteurs.get(i).getStyle();
+                                        line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pID+"\t"+pStyle;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureRom(){
+                try
+                {
+                        File f = new File ("Romans.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Numéro\tTitre\tnumAut\tEditeur\tNombrePages\tGenre\tDisponibilité";
+                                br.write(line);
+                                for(int i=0; i<this.Romans.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNum = Integer.toString(this.Romans.get(i).getNum());
+                                        String pTitre = this.Romans.get(i).getTitre();
+                                        String pAut = Integer.toString(this.Romans.get(i).getAut().getNum());
+                                        String pEdit = this.Romans.get(i).getEdit();
+                                        String pNbre = Integer.toString(this.Romans.get(i).getNbre());
+                                        String pGenre = this.Romans.get(i).getGenre();
+                                        String pDispo = Boolean.toString(this.Romans.get(i).getDispo());
+                                        line = pNum+"\t"+pTitre+"\t"+pAut+"\t"+pEdit+"\t"+pNbre+"\t"+pGenre+"\t"+pDispo;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureCD(){
+                try
+                {
+                        File f = new File ("CDs.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Numéro\tTitre\tnumAut\tEditeur\tDisponibilité\tListe_Chansons";
+                                br.write(line);
+                                for(int i=0; i<this.CDs.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNum = Integer.toString(this.CDs.get(i).getNum());
+                                        String pTitre = this.CDs.get(i).getTitre();
+                                        String pAut = Integer.toString(this.CDs.get(i).getAut().getNum());
+                                        String pEdit = this.CDs.get(i).getEdit();
+                                        String pDispo = Boolean.toString(this.CDs.get(i).getDispo());
+                                        String pListe = "";
+                                        for(int j=0; j<this.CDs.get(i).getListe().size(); j++)
+                                        {
+                                                pListe = pListe+"\t"+this.CDs.get(i).getListe().get(j);
+                                        }
+                                        line = pNum+"\t"+pTitre+"\t"+pAut+"\t"+pEdit+"\t"+pDispo+pListe;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureEmp(){
+                try
+                {
+                        File f = new File ("Emprunts.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Numéro_Adh\tNuméro_Ouv\tDate_Emprunt\tDate_Retour\tType_Ouvrage";
+                                br.write(line);
+                                for(int i=0; i<this.Emprunts.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNumAdh = Integer.toString(this.Emprunts.get(i).getAdh().getNum());
+                                        String pNumOuv = Integer.toString(this.Emprunts.get(i).getOuv().getNum());
+                                        String pDateE = this.Emprunts.get(i).getDateE().toString();
+                                        String pDateR = this.Emprunts.get(i).getDateR().toString();
+                                        String pType = this.Emprunts.get(i).getType();
+                                        line = pNumAdh+"\t"+pNumOuv+"\t"+pDateE+"\t"+pDateR+"\t"+pType;
+                                        br.write(line);
+                                }
+                                br.close();
+                                fr.close();
+                        }
+                        catch (IOException exception)
+                        {
+                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+                        }
+                }
+                catch (IOException exception)
+                {
+                        System.out.println ("Le fichier n'a pas été trouvé");
+                }
+        }
+        
+        public void ecritureResa(){
+                try
+                {
+                        File f = new File ("Reservations.txt");
+                        FileWriter fr = new FileWriter (f);
+                        BufferedWriter br = new BufferedWriter (fr);
+                        try
+                        {
+                                String line = "Numéro_Adh\tNuméro_Ouv\tType_Ouvrage";
+                                br.write(line);
+                                for(int i=0; i<this.Reservations.size(); i++)
+                                {
+                                        br.newLine();
+                                        String pNumAdh = Integer.toString(this.Reservations.get(i).getAdh().getNum());
+                                        String pNumOuv = Integer.toString(this.Reservations.get(i).getOuv().getNum());
+                                        String pType = this.Reservations.get(i).getType();
+                                        line = pNumAdh+"\t"+pNumOuv+"\t"+pType;
                                         br.write(line);
                                 }
                                 br.close();

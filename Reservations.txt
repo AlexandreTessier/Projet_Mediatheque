@@ -1,2 +1,2 @@
-Numéro_Adhérent	Numéro_Ouv	Type_Ouvrage
-01	01	Roman
+NumÃ©ro_Adh	NumÃ©ro_Ouv	Type_Ouvrage
+1	1	Roman

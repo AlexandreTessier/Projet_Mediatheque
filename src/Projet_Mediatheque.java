@@ -10,6 +10,8 @@ public class Projet_Mediatheque
 	{
 		Mediatheque Med = new Mediatheque();
 		menu();
+                System.out.println(Boolean.toString(true));
+                System.out.println(Boolean.getBoolean("true"));
 		
 	}
 	public static void menu()

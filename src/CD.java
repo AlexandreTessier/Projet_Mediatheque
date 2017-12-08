@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class CD extends Ouvrage
 {
-	private ArrayList<String> listeChansons;
+	private ArrayList listeChansons;
     
-	public CD(int pNum, String pTitre, Auteur pAuteur, String pEditeur, boolean pDispo, ArrayList<String> pListe) 
+	public CD(int pNum, String pTitre, Auteur pAuteur, String pEditeur, boolean pDispo, ArrayList pListe) 
 	{
 		this.numero=pNum;
 		this.titre=pTitre;
@@ -21,5 +21,25 @@ public class CD extends Ouvrage
 	}
         public int getNum(){
                 return this.numero;
+        }
+        public String getTitre()
+        {
+                return this.titre;
+        }
+        public Auteur getAut()
+        {
+                return this.auteur;
+        }
+        public String getEdit()
+        {
+                return this.editeur;
+        }
+        public boolean getDispo()
+        {
+                return this.disponibilite;
+        }
+        public ArrayList getListe()
+        {
+                return this.listeChansons;
         }
 }

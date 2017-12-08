@@ -3,7 +3,7 @@ import java.time.*;
 public class Bibliothecaire extends Personne
 {
 	private String email;
-	private String mot_de_passe;
+	private String mdP;
     
 	public Bibliothecaire(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP)
 	{
@@ -11,7 +11,7 @@ public class Bibliothecaire extends Personne
 		this.prenom=pPrenom;
 		this.date_Naissance=pDate;
 		this.email=pMail;
-		this.mot_de_passe=pMDP;
+		this.mdP=pMDP;
 	}
 	
 	@Override
@@ -19,7 +19,28 @@ public class Bibliothecaire extends Personne
 	{
 		return "Admin";
 	}
-
+        
+        public String getNom()
+        {
+                return this.nom;
+        }
+        public String getPrenom()
+        {
+                return this.prenom;
+        }
+        public LocalDate getdate()
+        {
+                return this.date_Naissance;
+        }
+        public String getMail()
+        {
+                return this.email;
+        }
+        public String getMDP()
+        {
+                return this.mdP;
+        }
+        
 	public void gerer_base_donnee()
 	{
         

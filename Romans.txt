@@ -1,2 +1,3 @@
-Numéro	Titre	numAut	Editeur	NombrePages	Genre	Disponibilité
-01	Blablabla	01	Moi	42	Fantastique	true
+NumÃ©ro	Titre	numAut	Editeur	NombrePages	Genre	DisponibilitÃ©
+1	Blablabla	1	Moi	42	Fantastique	false
+1	Blablabla	1	Moi	42	Fantastique	true
