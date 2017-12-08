@@ -33,13 +33,7 @@ public class Mediatheque
                 this.recupeCD();
                 this.recupeEmp();
                 this.recupeResa();
-                this.ecritureAdh();
-                this.ecritureBib();
-                this.ecritureAut();
-                this.ecritureRom();
-                this.ecritureCD();
-                this.ecritureEmp();
-                this.ecritureResa();
+                
         }
         
         public void recupeAdh()
@@ -310,7 +304,19 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureAdh(){
+        public void ecriture()
+        {
+                this.ecritureAdh();
+                this.ecritureBib();
+                this.ecritureAut();
+                this.ecritureRom();
+                this.ecritureCD();
+                this.ecritureEmp();
+                this.ecritureResa();
+        }
+        
+        public void ecritureAdh()
+        {
                 try
                 {
                         File f = new File ("Adherents.txt");
@@ -347,7 +353,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureBib(){
+        public void ecritureBib()
+        {
                 try
                 {
                         File f = new File ("Bibliothecaires.txt");
@@ -382,7 +389,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureAut(){
+        public void ecritureAut()
+        {
                 try
                 {
                         File f = new File ("Auteurs.txt");
@@ -417,7 +425,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureRom(){
+        public void ecritureRom()
+        {
                 try
                 {
                         File f = new File ("Romans.txt");
@@ -454,7 +463,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureCD(){
+        public void ecritureCD()
+        {
                 try
                 {
                         File f = new File ("CDs.txt");
@@ -494,7 +504,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureEmp(){
+        public void ecritureEmp()
+        {
                 try
                 {
                         File f = new File ("Emprunts.txt");
@@ -529,7 +540,8 @@ public class Mediatheque
                 }
         }
         
-        public void ecritureResa(){
+        public void ecritureResa()
+        {
                 try
                 {
                         File f = new File ("Reservations.txt");
