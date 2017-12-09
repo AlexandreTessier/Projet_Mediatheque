@@ -33,26 +33,7 @@ public class Projet_Mediatheque
                 System.out.println(logIn);
 		Med.ecriture();
 	}
-        
-	public static void menuAdherent(Mediatheque Med, Adherent Adh)
-	{
-		clear();
-		System.out.println("BONJOUR JE SUIS UNE MEDIATHEQUE");
-		System.out.println();
-		
-		
-		
-		
-		
-		
-		
-	}
-        public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
-        {
-                clear();
-                System.out.println("BONJOUR JE SUIS UNE PUTAIN DE MEDIATHEQUE");
-		System.out.println();
-        }
+        //Méthode qui connecte un utilisateur déjà inscrit
         public static Personne logIn(Mediatheque Med)
         {
                 clear();
@@ -80,6 +61,7 @@ public class Projet_Mediatheque
                         System.out.println("Le mail ou le mot de passe est incorrect");
                 }
         }
+        //Méthode qui fait s'inscrire un nouvel adhérent
         public static Personne signIn(Mediatheque Med)
         {
                 clear();
@@ -133,6 +115,10 @@ public class Projet_Mediatheque
                         {
                                 bool=true;
                         }
+                        else
+                        {
+                                System.out.println("Les deux mots de passe donnés ne correspongent pas.");
+                        }
                 }
                 while(!bool);
                 int pID = Med.getAdh().size()+1;
@@ -141,6 +127,25 @@ public class Projet_Mediatheque
                 Adherent Ad = new Adherent(pNom, pPrenom, pDate, eMail, mdP, pID, pTel);
                 Med.ajouteAdh(Ad);
                 return Ad;
+        }
+	public static void menuAdherent(Mediatheque Med, Adherent Adh)
+	{
+		clear();
+		System.out.println("BONJOUR JE SUIS UNE MEDIATHEQUE");
+		System.out.println();
+		
+		
+		
+		
+		
+		
+		
+	}
+        public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
+        {
+                clear();
+                System.out.println("BONJOUR JE SUIS UNE PUTAIN DE MEDIATHEQUE");
+		System.out.println();
         }
 	//Methode qui nettoie l'affichage
 	public static void clear()
