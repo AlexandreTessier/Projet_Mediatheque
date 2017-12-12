@@ -128,6 +128,7 @@ public class Projet_Mediatheque
                 Med.ajouteAdh(Ad);
                 return Ad;
         }
+        //Menu qui apparaît si l'utilisateur est un adhérent
 	public static void menuAdherent(Mediatheque Med, Adherent Adh)
 	{
 		clear();
@@ -141,6 +142,7 @@ public class Projet_Mediatheque
 		
 		
 	}
+        //Menu qui apparaît si l'utilisateur est un bibliothécaire
         public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
         {
                 clear();
