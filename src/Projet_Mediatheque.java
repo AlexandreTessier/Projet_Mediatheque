@@ -9,28 +9,41 @@ public class Projet_Mediatheque
 	public static void main(String[] args) throws IOException 
 	{
 		Mediatheque Med = new Mediatheque();
-		System.out.println("Bienvenue dans le logiciel système de la médiathèque. Veuillez indiquer par 1 ou 2 votre choix.\n"
-                        + "\t1-Se connecter.\n"
-                        + "\t2-S'inscrire.");
-                int logIn=Lire.i();
-                Personne Utilisateur;
-                if(logIn==1)
+                boolean Quitter=false;
+                while(!Quitter)
                 {
-                     Utilisateur = logIn(Med);   
+                       System.out.println("Bienvenue dans le logiciel système de la médiathèque. Veuillez indiquer par 1 ou 2 votre choix.\n"
+                                + "\t1-Se connecter.\n"
+                                + "\t2-S'inscrire.\n"
+                                + "\t3-Quitter le logiciel.");
+                        int logIn=Lire.i();
+                        Personne Utilisateur = null;
+                        switch(logIn)
+                        {
+                                case 1:
+                                        Utilisateur = logIn(Med);
+                                        if(Utilisateur instanceof Adherent)
+                                        {
+                                                menuAdherent(Med, (Adherent)Utilisateur);
+                                        }
+                                        else
+                                        {
+                                                menuBibliothecaire(Med, (Bibliothecaire)Utilisateur);
+                                        }
+                                break;
+                                case 2:
+                                        Utilisateur = signIn(Med);
+                                        menuAdherent(Med, (Adherent)Utilisateur);
+                                break;
+                                case 3:
+                                        Quitter=true;
+                                break;
+                                default:
+                                        System.out.println("Commande non-reconnue, veuillez ré-essayer.");
+                                break;
+                        }
                 }
-                else
-                {
-                        Utilisateur = signIn(Med);
-                }
-                if(Utilisateur instanceof Adherent)
-                {
-                        menuAdherent(Med, (Adherent)Utilisateur);
-                }
-                else
-                {
-                        menuBibliothecaire(Med, (Bibliothecaire)Utilisateur);
-                }
-                System.out.println(logIn);
+		
 		Med.ecriture();
 	}
         //Méthode qui connecte un utilisateur déjà inscrit
@@ -131,13 +144,51 @@ public class Projet_Mediatheque
         //Menu qui apparaît si l'utilisateur est un adhérent
 	public static void menuAdherent(Mediatheque Med, Adherent Adh)
 	{
-		clear();
-		System.out.println("BONJOUR JE SUIS UNE MEDIATHEQUE");
-		System.out.println();
-		
-		
-		
-		
+                boolean Quitter=false;
+                while(!Quitter)
+                {
+                        clear();
+                        System.out.println("Bonjour, "+Adh.getNom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
+                                + "\t1-Emprunter.\n"
+                                + "\t2-Réserver.\n"
+                                + "\t3-Effectuer une recherche.\n"
+                                + "\t4-Rendre un document.\n"
+                                + "\t5-Annuler une réservation."
+                                + "\t6-Se déconnecter.");
+                        int Choix=Lire.i();
+                        switch(Choix)
+                        {
+                                case 1:
+                                        //Demander le type d'ouvrage à emprunter
+                                        //Compter les emprunts de ce type là pour cet adhérent. Vérifier les emprunts en retard.
+                                        //Si c'est possible: demander le numéro de l'ouvrage.
+                                                //Dispo: emprunter.
+                                                //Pas dispo: réserver si ouvrage dispo.
+                                break;
+                                case 2:
+                                        //Regarder les emprunts en retard
+                                        //Compter les réservations
+                                        //S'il n'y en a pas: réserver si ouvrage dispo
+                                break;
+                                case 3:
+                                        //Caractéristiques dispo: num auteur, type ouvrage, genre ouvrage, 
+                                break;
+                                case 4:
+                                        //Affiche les emprunts
+                                        //Rends l'ouvrage grâce à son numéro
+                                break;
+                                case 5:
+                                        //Affiche les réservations
+                                        //Annule la résa grâce à son num
+                                break;
+                                case 6:
+                                        Quitter=true;
+                                break;
+                                default:
+                                        System.out.println("Commande non-reconnue, veuillez ré-essayer.");
+                                break;
+                        }
+                }
 		
 		
 		
