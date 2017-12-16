@@ -48,4 +48,12 @@ public class Roman extends Ouvrage
         {
                 return this.disponibilite;
         }
+        public void nonDispo()
+        {
+                this.disponibilite=false;
+        }
+        public void dispo()
+        {
+                this.disponibilite=true;
+        }
 }

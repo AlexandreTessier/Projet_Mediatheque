@@ -130,7 +130,7 @@ public class Projet_Mediatheque
                         }
                         else
                         {
-                                System.out.println("Les deux mots de passe donnés ne correspongent pas.");
+                                System.out.println("Les deux mots de passe donnés ne correspontent pas.");
                         }
                 }
                 while(!bool);
@@ -148,22 +148,18 @@ public class Projet_Mediatheque
                 while(!Quitter)
                 {
                         clear();
-                        System.out.println("Bonjour, "+Adh.getNom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
+                        System.out.println("Bonjour, "+Adh.getPrenom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
                                 + "\t1-Emprunter.\n"
                                 + "\t2-Réserver.\n"
                                 + "\t3-Effectuer une recherche.\n"
                                 + "\t4-Rendre un document.\n"
-                                + "\t5-Annuler une réservation."
+                                + "\t5-Annuler une réservation.\n"
                                 + "\t6-Se déconnecter.");
                         int Choix=Lire.i();
                         switch(Choix)
                         {
                                 case 1:
-                                        //Demander le type d'ouvrage à emprunter
-                                        //Compter les emprunts de ce type là pour cet adhérent. Vérifier les emprunts en retard.
-                                        //Si c'est possible: demander le numéro de l'ouvrage.
-                                                //Dispo: emprunter.
-                                                //Pas dispo: réserver si ouvrage dispo.
+                                        emprunter(Med, Adh);
                                 break;
                                 case 2:
                                         //Regarder les emprunts en retard
@@ -183,6 +179,7 @@ public class Projet_Mediatheque
                                 break;
                                 case 6:
                                         Quitter=true;
+                                        System.out.println("Vous avez été déconnecté avec succès.");
                                 break;
                                 default:
                                         System.out.println("Commande non-reconnue, veuillez ré-essayer.");
@@ -198,6 +195,8 @@ public class Projet_Mediatheque
         {
                 clear();
                 System.out.println("BONJOUR JE SUIS UNE PUTAIN DE MEDIATHEQUE");
+                //Ajouter un ouvrage
+                //Supprimer ouvrage: troll on ne peut pas car j'ai mal programmé la gestion des numéros des bouquins
 		System.out.println();
         }
 	//Methode qui nettoie l'affichage
@@ -215,4 +214,93 @@ public class Projet_Mediatheque
 			System.out.flush();
 		}
 	}
+        //Methode qui vérifie les possibilités d'emprunt, et qui rajoute un emprunt si possible
+        public static void emprunter(Mediatheque Med, Adherent Adh)
+        {
+                boolean T = true;
+                int nbreEmprunts=0, choix=0;
+                String S="";
+                if(Med.comparerDatesEmprunts(Adh))
+                {
+                        System.out.println("Vous avez un ou plusieurs ouvrage en retard, emprunt impossible.");
+                }
+                else
+                {
+                        while(T)
+                        {
+                                System.out.println("Veuillez renseigner le type d'Ouvrage que vous voulez emprunter.\n"
+                                + "\t1-Roman,\n"
+                                + "\t2-CD.");
+                                choix=Lire.i();
+                                switch(choix)
+                                {
+                                        case 1:
+                                                T=false;
+                                                S="Roman";
+                                        break;
+                                        case 2:
+                                                T=false;
+                                                S="CD";
+
+                                        break;
+                                        default:
+                                                System.out.println("Commande non reconnue, veuillez taper 1 ou 2.");
+                                        break;
+                                }
+                        }
+                        nbreEmprunts = Med.rechercheEmprunts(Adh, S);
+                        if(nbreEmprunts>=5)
+                        {
+                                System.out.println("Vous avez emprunté trop de "+S+"s, échec de l'emprunt.");
+                        }
+                        else
+                        {
+                                System.out.println("Veuillez renseigner le numéro de l'ouvrage que vous voulez emprunter.");
+                                int num=Lire.i();
+                                switch(choix)
+                                {
+                                        case 1:
+                                                if(Med.getRom().size()>=num)
+                                                {
+                                                        T=Med.getRom().get(num-1).getDispo();
+                                                        if(T)
+                                                        {
+                                                                Emprunt Emp = new Emprunt(Adh, Med.getRom().get(num-1));
+                                                                Med.ajouteEmp(Emp);
+                                                                System.out.println("L'emprunt est un succès.");
+                                                        }
+                                                        else
+                                                        {
+                                                                System.out.println("Le roman demandé n'est pas disponible, l'emprunt est donc impossible.");
+                                                        }
+                                                }
+                                                else
+                                                {
+                                                        System.out.println("Il n'y a pas de roman portant le numéro "+num+". Emprunt impossible.");
+                                                }
+                                        break;
+                                        case 2:
+                                                if(Med.getCD().size()>=num)
+                                                {
+                                                        T=Med.getCD().get(num-1).getDispo();
+                                                        if(T)
+                                                        {
+                                                                Emprunt Emp = new Emprunt(Adh, Med.getCD().get(num-1));
+                                                                Med.ajouteEmp(Emp);
+                                                                System.out.println("L'emprunt est un succès.");
+                                                        }
+                                                        else
+                                                        {
+                                                                System.out.println("Le CD demandé n'est pas disponible, l'emprunt est donc impossible.");
+                                                        }
+                                                }
+                                                else
+                                                {
+                                                        System.out.println("Il n'y a pas de CD portant le numéro "+num+". Emprunt impossible.");
+                                                }
+                                        break;
+                                }
+                        }
+                }
+        }
 }

@@ -645,8 +645,40 @@ public class Mediatheque
                 return null;
         }
         
-        public void ajouteAdh(Adherent Adh){
+        public void ajouteAdh(Adherent Adh)
+        {
                 this.Adherents.add(Adh);
+        }
+        
+        public void ajouteEmp(Emprunt Emp)
+        {
+                this.Emprunts.add(Emp);
+                this.Emprunts.get(this.Emprunts.size()-1).getOuv().nonDispo();
+        }
+        
+        public int rechercheEmprunts(Adherent Adh, String pString)
+        {
+                int nbreEmprunts=0;
+                for(int i=0; i<this.Emprunts.size(); i++)
+                {
+                        if(this.Emprunts.get(i).getAdh().getNum() == Adh.getNum() && this.Emprunts.get(i).getType().equals(pString))
+                        {
+                                nbreEmprunts++;
+                        }
+                }
+                return nbreEmprunts;
+        }
+        
+        public boolean comparerDatesEmprunts(Adherent Adh)
+        {
+                for(int i=0; i<this.Emprunts.size(); i++)
+                {
+                        if(this.Emprunts.get(i).getDateR().isBefore(LocalDate.now()) && this.Emprunts.get(i).getAdh().getNum()==Adh.getNum())
+                        {
+                        return true;
+                        }
+                }
+                return false;     
         }
         
 }

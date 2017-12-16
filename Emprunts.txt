@@ -1,2 +1,4 @@
 Numéro_Adh	Numéro_Ouv	Date_Emprunt	Date_Retour	Type_Ouvrage
-1	1	2017-12-06	2018-01-03	Roman
+6	1	2017-12-16	2018-01-13	Roman
+1	2	2017-12-16	2017-11-13	Roman
+6	1	2017-12-16	2018-01-13	CD

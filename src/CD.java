@@ -42,4 +42,12 @@ public class CD extends Ouvrage
         {
                 return this.listeChansons;
         }
+        public void nonDispo()
+        {
+                this.disponibilite=false;
+        }
+        public void dispo()
+        {
+                this.disponibilite=true;
+        }
 }
