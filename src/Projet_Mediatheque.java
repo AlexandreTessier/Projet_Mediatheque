@@ -457,8 +457,10 @@ public class Projet_Mediatheque
        public static void recherche(Mediatheque Med)
         {
                 ArrayList<Ouvrage> liste=new ArrayList();
+                ArrayList<Ouvrage> liste2=new ArrayList();
                 liste.addAll(Med.getRom());
                 liste.addAll(Med.getCD());
+                liste2=liste;
                 boolean T=true;
                 while(T)
                 {
@@ -482,7 +484,7 @@ public class Projet_Mediatheque
                                                 {
                                                         if(!liste.get(i).getAut().getNom().equals(nom))
                                                         {
-                                                                liste.remove(i);
+                                                                liste2.remove(liste.get(i));
                                                         }
                                                 }
                                         }
@@ -496,7 +498,7 @@ public class Projet_Mediatheque
                                                 {
                                                         if(liste.get(i) instanceof CD)
                                                         {
-                                                                liste.remove(i);
+                                                                liste2.remove(liste.get(i));
                                                         }
                                                 }
                                         }
@@ -506,7 +508,7 @@ public class Projet_Mediatheque
                                                 {
                                                         if(liste.get(i) instanceof Roman)
                                                         {
-                                                                liste.remove(i);
+                                                                liste2.remove(liste.get(i));
                                                         }
                                                 }
                                         }
@@ -518,7 +520,7 @@ public class Projet_Mediatheque
                                         {
                                                 if(!liste.get(i).getTitre().equals(titre))
                                                 {
-                                                        liste.remove(i);
+                                                        liste2.remove(liste.get(i));
                                                 }
                                         }
                                 break;
@@ -528,7 +530,7 @@ public class Projet_Mediatheque
                                         {
                                                 if(!liste.get(i).getDispo())
                                                 {
-                                                        liste.remove(i);
+                                                        liste2.remove(liste.get(i));
                                                 }
                                         }
                                 break;
@@ -539,7 +541,7 @@ public class Projet_Mediatheque
                                         {
                                                 if(!liste.get(i).getEdit().equals(editeur))
                                                 {
-                                                        liste.remove(i);
+                                                        liste2.remove(liste.get(i));
                                                 }
                                         }
                                 break;
@@ -550,9 +552,9 @@ public class Projet_Mediatheque
                 }
                 clear();
                 System.out.println("Liste des Ouvrages:");
-                for(int i=0; i<liste.size(); i++)
+                for(int i=0; i<liste2.size(); i++)
                 {
-                        System.out.println(liste.get(i).toString());
+                        System.out.println(liste2.get(i).toString());
                 }
         }
 }
