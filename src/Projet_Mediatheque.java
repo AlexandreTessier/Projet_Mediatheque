@@ -213,12 +213,12 @@ public class Projet_Mediatheque
                                 switch(choix)
                                 {
                                         case 1:
-                                                if(Med.getRom().size()>=num)
+                                                if(Med.contientRom(num))
                                                 {
-                                                        T=Med.getRom().get(num-1).getDispo();
+                                                        T=Med.romanNum(num).getDispo();
                                                         if(T)
                                                         {
-                                                                Emprunt Emp = new Emprunt(Adh, Med.getRom().get(num-1));
+                                                                Emprunt Emp = new Emprunt(Adh, Med.romanNum(num));
                                                                 Med.ajouteEmp(Emp);
                                                                 clear();
                                                                 System.out.println("L'emprunt est un succès.");
@@ -234,12 +234,12 @@ public class Projet_Mediatheque
                                                 }
                                         break;
                                         case 2:
-                                                if(Med.getCD().size()>=num)
+                                                if(Med.contientCD(num))
                                                 {
-                                                        T=Med.getCD().get(num-1).getDispo();
+                                                        T=Med.cDNum(num).getDispo();
                                                         if(T)
                                                         {
-                                                                Emprunt Emp = new Emprunt(Adh, Med.getCD().get(num-1));
+                                                                Emprunt Emp = new Emprunt(Adh, Med.cDNum(num));
                                                                 Med.ajouteEmp(Emp);
                                                                 clear();
                                                                 System.out.println("L'emprunt est un succès.");
@@ -295,11 +295,11 @@ public class Projet_Mediatheque
                                 int ouv=Lire.i();
                                 if(choix==1)
                                 {
-                                        if(Med.getRom().size()>=ouv)
+                                        if(Med.contientRom(ouv))
                                         {
-                                                if(Med.resaPossible(Med.getRom().get(ouv), "Roman"))
+                                                if(Med.resaPossible(Med.romanNum(ouv), "Roman"))
                                                 {
-                                                        Reservation Resa=new Reservation(Adh, Med.getRom().get(ouv));
+                                                        Reservation Resa=new Reservation(Adh, Med.romanNum(ouv));
                                                         Med.ajouteResa(Resa);
                                                         clear();
                                                         System.out.println("Réservation réussie.");
@@ -316,11 +316,11 @@ public class Projet_Mediatheque
                                 }
                                 else
                                 {
-                                        if(Med.getCD().size()>=ouv)
+                                        if(Med.contientCD(ouv))
                                         {
-                                                if(Med.resaPossible(Med.getCD().get(ouv), "CD"))
+                                                if(Med.resaPossible(Med.cDNum(ouv), "CD"))
                                                 {
-                                                        Reservation Resa=new Reservation(Adh, Med.getCD().get(ouv));
+                                                        Reservation Resa=new Reservation(Adh, Med.cDNum(ouv));
                                                         Med.ajouteResa(Resa);
                                                         clear();
                                                         System.out.println("Réservation réussie.");

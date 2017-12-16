@@ -665,4 +665,52 @@ public class Mediatheque
                 }
                 return true;
         }
+        
+        public boolean contientRom(int num)
+        {
+                for(int i=0; i<this.Romans.size(); i++)
+                {
+                        if(this.Romans.get(i).getNum() == num)
+                        {
+                                return true;
+                        }
+                }
+                return false;
+        }
+        
+        public boolean contientCD(int num)
+        {
+                for(int i=0; i<this.CDs.size(); i++)
+                {
+                        if(this.CDs.get(i).getNum() == num)
+                        {
+                                return true;
+                        }
+                }
+                return false;
+        }
+        
+        public Roman romanNum(int num)
+        {
+                for(int i=0; i<this.Romans.size(); i++)
+                {
+                        if(this.Romans.get(i).getNum() == num)
+                        {
+                                return this.Romans.get(i);
+                        }
+                }
+                return null;
+        }
+        
+        public CD cDNum(int num)
+        {
+                for(int i=0; i<this.CDs.size(); i++)
+                {
+                        if(this.CDs.get(i).getNum() == num)
+                        {
+                                return this.CDs.get(i);
+                        }
+                }
+                return null;
+        }
 }
