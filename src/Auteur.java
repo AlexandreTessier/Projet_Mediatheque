@@ -14,7 +14,7 @@ public class Auteur extends Personne{
     
     @Override
     public String toString() {
-        return "Auteur";
+        return this.prenom+" "+this.nom;
     }
     
     public String getNom()

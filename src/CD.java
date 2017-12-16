@@ -1,4 +1,3 @@
-import java.time.*;
 import java.util.ArrayList;
 
 public class CD extends Ouvrage
@@ -15,21 +14,26 @@ public class CD extends Ouvrage
 		this.listeChansons=pListe;
 	}
 	
+        @Override
 	public String toString()
 	{
-		return "CD";
+		return "Titre : " + this.titre +"; Editeur : " + this.editeur;
 	}
+        @Override
         public int getNum(){
                 return this.numero;
         }
+        @Override
         public String getTitre()
         {
                 return this.titre;
         }
+        @Override
         public Auteur getAut()
         {
                 return this.auteur;
         }
+        @Override
         public String getEdit()
         {
                 return this.editeur;
@@ -42,14 +46,17 @@ public class CD extends Ouvrage
         {
                 return this.listeChansons;
         }
+        @Override
         public String getType()
         {
                 return "CD";
         }
+        @Override
         public void nonDispo()
         {
                 this.disponibilite=false;
         }
+        @Override
         public void dispo()
         {
                 this.disponibilite=true;
