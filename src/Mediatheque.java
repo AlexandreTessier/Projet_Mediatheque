@@ -728,9 +728,16 @@ public class Mediatheque
         {
                 for(int i=0; i<this.Reservations.size(); i++)
                 {
-                        if(this.Reservations.get(i).getOuv().getNum() == Ouv.getNum() && this.Reservations.get(i).getOuv().getType().equals(pString))
+                        if(this.Reservations.get(i).getOuv().getNum() == Ouv.getNum())
                         {
-                                return false;
+                                if(pString.equals("Roman") && this.Reservations.get(i).getOuv() instanceof Roman)
+                                {
+                                        return false;
+                                }
+                                else if(pString.equals("CD") && this.Reservations.get(i).getOuv() instanceof CD)
+                                {
+                                        return false;
+                                }
                         }
                 }
                 return true;
