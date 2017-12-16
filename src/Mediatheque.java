@@ -701,6 +701,26 @@ public class Mediatheque
         
         public void supprimeEmprunt(int index)
         {
+		if(this.Emprunts.get(index).getOuv() instanceof Roman)
+		{
+			for(int i=0;i<this.Romans.size();i++)
+			{
+				if(this.Romans.get(i).toString().equals(this.Emprunts.get(index).getOuv().toString()))
+				{
+					this.Romans.get(i).dispo();
+				}
+			}
+		}
+		else
+		{
+			for(int i=0;i<this.CDs.size();i++)
+			{
+				if(this.CDs.get(i).toString().equals(this.Emprunts.get(index).getOuv().toString()))
+				{
+					this.CDs.get(i).dispo();
+				}
+			}
+		}
 		this.Emprunts.remove(index);
         }
         

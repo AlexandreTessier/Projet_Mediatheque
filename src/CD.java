@@ -42,10 +42,6 @@ public class CD extends Ouvrage
         {
                 return this.listeChansons;
         }
-        public String getType()
-        {
-                return "CD";
-        }
         public void nonDispo()
         {
                 this.disponibilite=false;

@@ -7,14 +7,12 @@ public class Adherent extends Personne
 	private String mdP;
 	private int num_identifiant;
 	private String num_tel;
-	private Emprunt[] liste_Emprunts;
 	//Construction
 	public Adherent(String pNom, String pPrenom, LocalDate pDate, String pMail, String pMDP, int pId, String pTel)
 	{
 		this.nom=pNom;
 		this.prenom=pPrenom;
 		this.date_Naissance=pDate;
-		this.liste_Emprunts = new Emprunt[10];
 		this.email=pMail;
 		this.mdP=pMDP;
 		this.num_identifiant=pId;
