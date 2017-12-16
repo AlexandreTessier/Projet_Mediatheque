@@ -457,14 +457,8 @@ public class Projet_Mediatheque
        public static void recherche(Mediatheque Med)
         {
                 ArrayList<Ouvrage> liste=new ArrayList();
-                for(int i=0; i<Med.getRom().size(); i++)
-                {
-                        liste.add(Med.getRom().get(i));
-                }
-                for(int i=0; i<Med.getCD().size(); i++)
-                {
-                        liste.add(Med.getCD().get(i));
-                }
+                liste.addAll(Med.getRom());
+                liste.addAll(Med.getCD());
                 boolean T=true;
                 while(T)
                 {
