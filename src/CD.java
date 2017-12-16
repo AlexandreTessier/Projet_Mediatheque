@@ -17,7 +17,7 @@ public class CD extends Ouvrage
 	
 	public String toString()
 	{
-		return "CD";
+		return "[CD] Titre: "+this.titre+"; Auteur :"+this.auteur+"; Editeur: "+this.editeur+"; Disponibilité: "+this.disponibilite;
 	}
         public int getNum(){
                 return this.numero;

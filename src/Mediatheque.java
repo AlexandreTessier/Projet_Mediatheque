@@ -647,6 +647,11 @@ public class Mediatheque
                 this.Reservations.remove(index);
         }
         
+        public void prolongeEmprunt(int index)
+        {
+                this.Emprunts.get(index).prolonge();
+        }
+        
         public boolean resaPossible(Ouvrage Ouv, String pString)
         {
                 for(int i=0; i<this.Reservations.size(); i++)

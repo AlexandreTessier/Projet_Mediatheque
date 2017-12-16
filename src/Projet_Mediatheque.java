@@ -131,7 +131,8 @@ public class Projet_Mediatheque
                                 + "\t3-Effectuer une recherche.\n"
                                 + "\t4-Rendre un ouvrage.\n"
                                 + "\t5-Annuler une réservation.\n"
-                                + "\t6-Se déconnecter.");
+                                + "\t6-Prolonger un emprunt"
+                                + "\t7-Se déconnecter.");
                         int Choix=Lire.i();
                         switch(Choix)
                         {
@@ -151,6 +152,9 @@ public class Projet_Mediatheque
                                         annulerReservation(Med,Adh);
                                 break;
                                 case 6:
+                                        prolonger(Med, Adh);
+                                break;
+                                case 7:
                                         Quitter=true;
                                         clear();
                                         System.out.println("Vous avez été déconnecté avec succès.");
@@ -379,7 +383,32 @@ public class Projet_Mediatheque
 				return;
 			} 
 		}
-		        
+        }
+        public static void prolonger(Mediatheque Med, Adherent Adh)
+        {
+                ArrayList<Emprunt> AdhEmp = afficherListeEmprunts(Med,Adh);
+                if(AdhEmp.isEmpty())
+		{
+			System.out.println("Aucun emprunt !");
+			return;
+		}
+		System.out.println("Quel ouvrage souhaitez vous prolonger ? (entrez le numéro correspondant) ");
+		int id = Lire.i();
+		while(id>=AdhEmp.size())
+		{
+			System.out.println("L'emprunt que vous avez demandé n'existe pas !");
+			id = Lire.i();
+		}
+		for(int i=0; i<Med.getEmp().size();i++)
+		{
+			if(AdhEmp.get(id).toString().equals(Med.getEmp().get(i).toString()))
+			{
+				Med.prolongeEmprunt(i);
+                                clear();
+				System.out.println("L'emprunt a été prolongé !");
+				return;
+			} 
+		}
         }
         //Methode qui affiche toutes les réservations d'un adherent et génére une liste de ces réservations 
         public static ArrayList<Reservation> afficherListeReservations(Mediatheque Med, Adherent Adh)
@@ -428,8 +457,14 @@ public class Projet_Mediatheque
        public static void recherche(Mediatheque Med)
         {
                 ArrayList<Ouvrage> liste=new ArrayList();
-                liste.addAll(Med.getRom());
-                liste.addAll(Med.getCD());
+                for(int i=0; i<Med.getRom().size(); i++)
+                {
+                        liste.add(Med.getRom().get(i));
+                }
+                for(int i=0; i<Med.getCD().size(); i++)
+                {
+                        liste.add(Med.getCD().get(i));
+                }
                 boolean T=true;
                 while(T)
                 {
