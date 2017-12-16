@@ -656,6 +656,11 @@ public class Mediatheque
                 this.Emprunts.get(this.Emprunts.size()-1).getOuv().nonDispo();
         }
         
+        public void ajouteResa(Reservation Resa)
+        {
+                this.Reservations.add(Resa);
+        }
+        
         public int rechercheEmprunts(Adherent Adh, String pString)
         {
                 int nbreEmprunts=0;
@@ -681,4 +686,28 @@ public class Mediatheque
                 return false;     
         }
         
+        public int rechercheResa(Adherent Adh)
+        {
+                int nbreResa=0;
+                for(int i=0; i<this.Reservations.size(); i++)
+                {
+                        if(this.Reservations.get(i).getAdh().getNum() == Adh.getNum())
+                        {
+                                nbreResa++;
+                        }
+                }
+                return nbreResa;
+        }
+        
+        public boolean resaPossible(Ouvrage Ouv, String pString)
+        {
+                for(int i=0; i<this.Reservations.size(); i++)
+                {
+                        if(this.Reservations.get(i).getOuv().getNum() == Ouv.getNum() && this.Reservations.get(i).getOuv().getType().equals(pString))
+                        {
+                                return false;
+                        }
+                }
+                return true;
+        }
 }

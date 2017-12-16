@@ -1,2 +1,3 @@
 Numéro_Adh	Numéro_Ouv	Type_Ouvrage
 1	1	Roman
+6	2	Roman

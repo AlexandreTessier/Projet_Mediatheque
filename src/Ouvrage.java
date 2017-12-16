@@ -13,4 +13,5 @@ public abstract class Ouvrage
         public abstract int getNum();
         public abstract void nonDispo();
         public abstract void dispo();
+        public abstract String getType();
 }

@@ -154,7 +154,8 @@ public class Projet_Mediatheque
                                 + "\t3-Effectuer une recherche.\n"
                                 + "\t4-Rendre un document.\n"
                                 + "\t5-Annuler une réservation.\n"
-                                + "\t6-Se déconnecter.");
+                                + "\t6-Rendre un ouvrage.\n"
+                                + "\t7-Se déconnecter.");
                         int Choix=Lire.i();
                         switch(Choix)
                         {
@@ -162,6 +163,7 @@ public class Projet_Mediatheque
                                         emprunter(Med, Adh);
                                 break;
                                 case 2:
+                                        reserver(Med, Adh);
                                         //Regarder les emprunts en retard
                                         //Compter les réservations
                                         //S'il n'y en a pas: réserver si ouvrage dispo
@@ -178,6 +180,10 @@ public class Projet_Mediatheque
                                         //Annule la résa grâce à son num
                                 break;
                                 case 6:
+                                        //Affiche les Emprunts de l'adhérent.
+                                        //Efface l'emprunt demandé, 
+                                break;
+                                case 7:
                                         Quitter=true;
                                         System.out.println("Vous avez été déconnecté avec succès.");
                                 break;
@@ -299,6 +305,84 @@ public class Projet_Mediatheque
                                                         System.out.println("Il n'y a pas de CD portant le numéro "+num+". Emprunt impossible.");
                                                 }
                                         break;
+                                }
+                        }
+                }
+        }
+        //Methode qui vérifie les possibilités de réservation, et qui rajoute une réservation si possible
+        public static void reserver(Mediatheque Med, Adherent Adh)
+        {
+                int nbreResa=0;
+                if(Med.comparerDatesEmprunts(Adh))
+                {
+                        System.out.println("Vous avez un ou plusieurs ouvrage en retard, réservation impossible.");
+                }
+                else
+                {
+                       nbreResa = Med.rechercheResa(Adh);
+                        if(nbreResa>=3)
+                        {
+                                System.out.println("Vous avez réservé trop d'ouvrages, échec de la réservation.");
+                        } 
+                        else
+                        {
+                                int choix=0;
+                                while(true)
+                                {
+                                        System.out.println("Veuillez renseigner le type d'Ouvrage que vous voulez emprunter.\n"
+                                        + "\t1-Roman,\n"
+                                        + "\t2-CD.");
+                                        choix=Lire.i();
+                                        if(choix!=1 && choix!=2)
+                                        {
+                                                System.out.println("Commande non reconnue, veuillez taper 1 ou 2.");
+                                        }
+                                        else
+                                        {
+                                                break;
+                                        }
+                                }
+                                System.out.println("Veuillez donner le numéro de l'ouvrage que vous voulez réserver.");
+                                int ouv=Lire.i();
+                                if(choix==1)
+                                {
+                                        if(Med.getRom().size()>=ouv)
+                                        {
+                                                if(Med.resaPossible(Med.getRom().get(ouv), "Roman"))
+                                                {
+                                                        Reservation Resa=new Reservation(Adh, Med.getRom().get(ouv));
+                                                        Med.ajouteResa(Resa);
+                                                        System.out.println("Réservation réussie.");
+                                                }
+                                                else
+                                                {
+                                                        System.out.println("Le Roman voulu est déjà réservé, échec de la réservation.");
+                                                }
+                                        }
+                                        else
+                                        {
+                                                System.out.println("Il n'y a pas de Roman portant ce numéro. Echec de la réservation.");
+                                        }
+                                }
+                                else
+                                {
+                                        if(Med.getCD().size()>=ouv)
+                                        {
+                                                if(Med.resaPossible(Med.getCD().get(ouv), "CD"))
+                                                {
+                                                        Reservation Resa=new Reservation(Adh, Med.getCD().get(ouv));
+                                                        Med.ajouteResa(Resa);
+                                                        System.out.println("Réservation réussie.");
+                                                }
+                                                else
+                                                {
+                                                        System.out.println("Le CD voulu est déjà réservé, échec de la réservation.");
+                                                }
+                                        }
+                                        else
+                                        {
+                                                System.out.println("Il n'y a pas de CD portant ce numéro. Echec de la réservation.");
+                                        }
                                 }
                         }
                 }

@@ -48,6 +48,10 @@ public class Roman extends Ouvrage
         {
                 return this.disponibilite;
         }
+        public String getType()
+        {
+                return "Roman";
+        }
         public void nonDispo()
         {
                 this.disponibilite=false;
