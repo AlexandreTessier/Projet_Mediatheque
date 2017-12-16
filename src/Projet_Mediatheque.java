@@ -42,7 +42,6 @@ public class Projet_Mediatheque
                                 break;
                         }
                 }
-		
 		Med.ecriture();
 	}
         //Méthode qui connecte un utilisateur déjà inscrit
@@ -167,8 +166,7 @@ public class Projet_Mediatheque
                                         recherche(Med); 
                                 break;
                                 case 4:
-                                        //Affiche les emprunts
-                                        //Efface l'emprunt demandé
+                                        rendre(Med,Adh);
                                 break;
                                 case 5:
                                         //Affiche les réservations
@@ -375,73 +373,115 @@ public class Projet_Mediatheque
                         }
                 }
         }
+        //Methode qui affiche tout les emprunt d'un adherent et génére une liste de ces emprunts 
+        public static ArrayList<Emprunt> afficherListeEmprunts(Mediatheque Med, Adherent Adh)
+        {
+		ArrayList<Emprunt> AdhEmp = new ArrayList();
+		System.out.println("Emprunts de : " + Adh.toString());
+		for(int i=0; i<Med.getEmp().size();i++ )
+		{
+			if(Med.getEmp().get(i).getAdh().getNum()==Adh.getNum())
+			{
+				System.out.println("["+AdhEmp.size()+"]" + Med.getEmp().get(i).getOuv().toString());
+				AdhEmp.add(Med.getEmp().get(i));
+			}
+		}
+		return AdhEmp;
+        }
+        //Methode qui permet a adherent de rendre un ouvrage
+        public static void rendre(Mediatheque Med, Adherent Adh)
+        {
+		ArrayList<Emprunt> AdhEmp = afficherListeEmprunts(Med,Adh);
+		if(AdhEmp.size()==0)
+		{
+			System.out.println("Aucun emprunt !");
+			return;
+		}
+		System.out.println("Quel ouvrage souhaitez vous rendre ? (entrez le numéro correspondant) ");
+		int id = Lire.i();
+		while(id>=AdhEmp.size())
+		{
+			System.out.println("L'emprunt que vous avez demandé n'existe pas !");
+			id = Lire.i();
+		}
+		for(int i=0; i<Med.getEmp().size();i++)
+		{
+			if(AdhEmp.get(id).toString().equals(Med.getEmp().get(i).toString()))
+			{
+				Med.supprimeEmprunt(i);
+				System.out.println("L'ouvrage a été rendu !'");
+				return;
+			} 
+		}
+		        
+        }
         //Methode qui recherche des ouvrages selon les caractéristiques demandées
         public static void recherche(Mediatheque Med)
         {
-                ArrayList<Integer> criteres=new ArrayList();
-                boolean T=true;
-                while(T)
-                {
-                        System.out.println("Veuillez donner indiquer la caractéristique que vous voulez ajouter à la recherche.\n"
-                                + "\t1-Par Auteur.\n"
-                                + "\t2-Par type d'Ouvrage (Roman, CD).\n"
-                                + "\t3-Par titre.\n"
-                                + "\t4-Par disponibilité.\n"
-                                + "\t5-Par Editeur.\n"
-                                + "\t6-Fin des critères.");
-                        int choix=Lire.i();
-                        if(choix!=6)
-                        {
-                            criteres.add(choix);    
-                        }
-                        else
-                        {
-                                T=false;
-                        }
-                }
-                ArrayList<Ouvrage> liste=new ArrayList();
-                
-                for(int i=0; i<criteres.size(); i++)
-                {
-                        ArrayList<Ouvrage> temp = new ArrayList();
-                        switch(criteres.get(i))
-                        {
-                                case 1:
-                                        System.out.println("Veuillez donner le nom de l'Auteur:");
-                                        liste.add(Med.rechercheAut(Lire.S()));
-                                break;
-                                case 2:
-                                        System.out.println("Veuillez donner le type d'Ouvrage ('Roman' ou 'CD' uniquement):");
-                                        liste.add(Med.rechercheType(Lire.S()));
-                                break;
-                                case 3:
-                                        System.out.println("Veuillez donner le titre de l'Ouvrage.");
-                                        liste.add(Med.rechercheTitre(Lire.S()));
-                                break;
-                                case 4:
-                                        System.out.println("La recherche n'affichera que des Ouvrages disponibles.");
-                                        liste.add(Med.rechercheDispo());
-                                break;
-                                case 5:
-                                        System.out.printn("Veuillez donner l'éditeur de l'Ouvrage");
-                                break;
-                        }
-                        liste.addAll(temp);
-                }
-                //On doit éliminer tous les ouvrages qui ne sont pas en doublons:
-                //1) On...
-                ArrayList<Ouvrage> temp=new ArrayList();
-                for(int i=0; i<liste.size(); i++)
-                {
-                        if(!temp.contains(liste.get(i)))
-                        {
-                                temp.add(liste.get(i));
-                        }
-                }
-                System.out.println("Liste des Ouvrages:");
-                for(int i=0; i<liste.size(); i++)
-                {
-                        System.out.println(liste.get(i).toString());
-                }
+//                 ArrayList<Integer> criteres=new ArrayList();
+//                 boolean T=true;
+//                 while(T)
+//                 {
+//                         System.out.println("Veuillez donner indiquer la caractéristique que vous voulez ajouter à la recherche.\n"
+//                                 + "\t1-Par Auteur.\n"
+//                                 + "\t2-Par type d'Ouvrage (Roman, CD).\n"
+//                                 + "\t3-Par titre.\n"
+//                                 + "\t4-Par disponibilité.\n"
+//                                 + "\t5-Par Editeur.\n"
+//                                 + "\t6-Fin des critères.");
+//                         int choix=Lire.i();
+//                         if(choix!=6)
+//                         {
+//                             criteres.add(choix);    
+//                         }
+//                         else
+//                         {
+//                                 T=false;
+//                         }
+//                 }
+//                 ArrayList<Ouvrage> liste=new ArrayList();
+//                 
+//                 for(int i=0; i<criteres.size(); i++)
+//                 {
+//                         ArrayList<Ouvrage> temp = new ArrayList();
+//                         switch(criteres.get(i))
+//                         {
+//                                 case 1:
+//                                         System.out.println("Veuillez donner le nom de l'Auteur:");
+//                                         liste.add(Med.rechercheAut(Lire.S()));
+//                                 break;
+//                                 case 2:
+//                                         System.out.println("Veuillez donner le type d'Ouvrage ('Roman' ou 'CD' uniquement):");
+//                                         liste.add(Med.rechercheType(Lire.S()));
+//                                 break;
+//                                 case 3:
+//                                         System.out.println("Veuillez donner le titre de l'Ouvrage.");
+//                                         liste.add(Med.rechercheTitre(Lire.S()));
+//                                 break;
+//                                 case 4:
+//                                         System.out.println("La recherche n'affichera que des Ouvrages disponibles.");
+//                                         liste.add(Med.rechercheDispo());
+//                                 break;
+//                                 case 5:
+//                                         System.out.printn("Veuillez donner l'éditeur de l'Ouvrage");
+//                                 break;
+//                         }
+//                         liste.addAll(temp);
+//                 }
+//                 //On doit éliminer tous les ouvrages qui ne sont pas en doublons:
+//                 //1) On...
+//                 ArrayList<Ouvrage> temp=new ArrayList();
+//                 for(int i=0; i<liste.size(); i++)
+//                 {
+//                         if(!temp.contains(liste.get(i)))
+//                         {
+//                                 temp.add(liste.get(i));
+//                         }
+//                 }
+//                 System.out.println("Liste des Ouvrages:");
+//                 for(int i=0; i<liste.size(); i++)
+//                 {
+//                         System.out.println(liste.get(i).toString());
+//                 }
         }
 }

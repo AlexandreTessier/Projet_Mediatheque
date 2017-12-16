@@ -699,6 +699,11 @@ public class Mediatheque
                 return nbreResa;
         }
         
+        public void supprimeEmprunt(int index)
+        {
+		this.Emprunts.remove(index);
+        }
+        
         public boolean resaPossible(Ouvrage Ouv, String pString)
         {
                 for(int i=0; i<this.Reservations.size(); i++)
