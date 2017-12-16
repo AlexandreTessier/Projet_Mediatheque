@@ -1,8 +1,7 @@
 import java.time.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Projet_Mediatheque 
 {
@@ -152,10 +151,9 @@ public class Projet_Mediatheque
                                 + "\t1-Emprunter.\n"
                                 + "\t2-Réserver.\n"
                                 + "\t3-Effectuer une recherche.\n"
-                                + "\t4-Rendre un document.\n"
+                                + "\t4-Rendre un ouvrage.\n"
                                 + "\t5-Annuler une réservation.\n"
-                                + "\t6-Rendre un ouvrage.\n"
-                                + "\t7-Se déconnecter.");
+                                + "\t6-Se déconnecter.");
                         int Choix=Lire.i();
                         switch(Choix)
                         {
@@ -164,26 +162,19 @@ public class Projet_Mediatheque
                                 break;
                                 case 2:
                                         reserver(Med, Adh);
-                                        //Regarder les emprunts en retard
-                                        //Compter les réservations
-                                        //S'il n'y en a pas: réserver si ouvrage dispo
                                 break;
                                 case 3:
-                                        //Caractéristiques dispo: num auteur, type ouvrage, genre ouvrage, 
+                                        recherche(Med); 
                                 break;
                                 case 4:
                                         //Affiche les emprunts
-                                        //Rends l'ouvrage grâce à son numéro
+                                        //Efface l'emprunt demandé
                                 break;
                                 case 5:
                                         //Affiche les réservations
                                         //Annule la résa grâce à son num
                                 break;
                                 case 6:
-                                        //Affiche les Emprunts de l'adhérent.
-                                        //Efface l'emprunt demandé, 
-                                break;
-                                case 7:
                                         Quitter=true;
                                         System.out.println("Vous avez été déconnecté avec succès.");
                                 break;
@@ -192,9 +183,6 @@ public class Projet_Mediatheque
                                 break;
                         }
                 }
-		
-		
-		
 	}
         //Menu qui apparaît si l'utilisateur est un bibliothécaire
         public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
@@ -385,6 +373,75 @@ public class Projet_Mediatheque
                                         }
                                 }
                         }
+                }
+        }
+        //Methode qui recherche des ouvrages selon les caractéristiques demandées
+        public static void recherche(Mediatheque Med)
+        {
+                ArrayList<Integer> criteres=new ArrayList();
+                boolean T=true;
+                while(T)
+                {
+                        System.out.println("Veuillez donner indiquer la caractéristique que vous voulez ajouter à la recherche.\n"
+                                + "\t1-Par Auteur.\n"
+                                + "\t2-Par type d'Ouvrage (Roman, CD).\n"
+                                + "\t3-Par titre.\n"
+                                + "\t4-Par disponibilité.\n"
+                                + "\t5-Par Editeur.\n"
+                                + "\t6-Fin des critères.");
+                        int choix=Lire.i();
+                        if(choix!=6)
+                        {
+                            criteres.add(choix);    
+                        }
+                        else
+                        {
+                                T=false;
+                        }
+                }
+                ArrayList<Ouvrage> liste=new ArrayList();
+                
+                for(int i=0; i<criteres.size(); i++)
+                {
+                        ArrayList<Ouvrage> temp = new ArrayList();
+                        switch(criteres.get(i))
+                        {
+                                case 1:
+                                        System.out.println("Veuillez donner le nom de l'Auteur:");
+                                        liste.add(Med.rechercheAut(Lire.S()));
+                                break;
+                                case 2:
+                                        System.out.println("Veuillez donner le type d'Ouvrage ('Roman' ou 'CD' uniquement):");
+                                        liste.add(Med.rechercheType(Lire.S()));
+                                break;
+                                case 3:
+                                        System.out.println("Veuillez donner le titre de l'Ouvrage.");
+                                        liste.add(Med.rechercheTitre(Lire.S()));
+                                break;
+                                case 4:
+                                        System.out.println("La recherche n'affichera que des Ouvrages disponibles.");
+                                        liste.add(Med.rechercheDispo());
+                                break;
+                                case 5:
+                                        System.out.printn("Veuillez donner l'éditeur de l'Ouvrage");
+                                break;
+                        }
+                        liste.addAll(temp);
+                }
+                //On doit éliminer tous les ouvrages qui ne sont pas en doublons:
+                //1) On...
+                ArrayList<Ouvrage> temp=new ArrayList();
+                for(int i=0; i<liste.size(); i++)
+                {
+                        if(!temp.contains(liste.get(i)))
+                        {
+                                temp.add(liste.get(i));
+                        }
+                }
+                System.out.println("Liste des Ouvrages:");
+                for(int i=0; i<liste.size(); i++)
+                {
+                        System.out.println(liste.get(i).toString());
                 }
         }
 }
