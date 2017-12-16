@@ -22,10 +22,12 @@ public class Projet_Mediatheque
                                         Utilisateur = logIn(Med);
                                         if(Utilisateur instanceof Adherent)
                                         {
+                                                clear();
                                                 menuAdherent(Med, (Adherent)Utilisateur);
                                         }
                                         else
                                         {
+                                                clear();
                                                 menuBibliothecaire(Med, (Bibliothecaire)Utilisateur);
                                         }
                                 break;
@@ -144,7 +146,6 @@ public class Projet_Mediatheque
                 boolean Quitter=false;
                 while(!Quitter)
                 {
-                        clear();
                         System.out.println("Bonjour, "+Adh.getPrenom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
                                 + "\t1-Emprunter.\n"
                                 + "\t2-Réserver.\n"
@@ -172,6 +173,7 @@ public class Projet_Mediatheque
                                 break;
                                 case 6:
                                         Quitter=true;
+                                        clear();
                                         System.out.println("Vous avez été déconnecté avec succès.");
                                 break;
                                 default:
@@ -186,7 +188,6 @@ public class Projet_Mediatheque
                 boolean Quitter=false;
                 while(!Quitter)
                 {
-                        clear();
                         System.out.println("Bonjour, "+Bib.getPrenom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
                                 + "\t1-Créer bibliothécaire.\n"
                                 + "\t2-Changer mot de passe administrateur.\n"
@@ -228,17 +229,8 @@ public class Projet_Mediatheque
 	//Methode qui nettoie l'affichage
 	public static void clear()
 	{
-		String os = System.getProperty("os.name");
-		if(os.contains("Windows"))
-		{/*
-			System.out.println("Va te faire foutre");
-			Runtime.getRuntime().exec("cls");
-		*/}
-		else
-		{
-			System.out.print("\u001b[2J" + "\u001b[H");
-			System.out.flush();
-		}
+		System.out.print("\u001b[2J" + "\u001b[H");
+		System.out.flush();
 	}
         //Methode qui vérifie les possibilités d'emprunt, et qui rajoute un emprunt si possible
         public static void emprunter(Mediatheque Med, Adherent Adh)
@@ -293,6 +285,7 @@ public class Projet_Mediatheque
                                                         {
                                                                 Emprunt Emp = new Emprunt(Adh, Med.getRom().get(num-1));
                                                                 Med.ajouteEmp(Emp);
+                                                                clear();
                                                                 System.out.println("L'emprunt est un succès.");
                                                         }
                                                         else
@@ -313,6 +306,7 @@ public class Projet_Mediatheque
                                                         {
                                                                 Emprunt Emp = new Emprunt(Adh, Med.getCD().get(num-1));
                                                                 Med.ajouteEmp(Emp);
+                                                                clear();
                                                                 System.out.println("L'emprunt est un succès.");
                                                         }
                                                         else
@@ -372,6 +366,7 @@ public class Projet_Mediatheque
                                                 {
                                                         Reservation Resa=new Reservation(Adh, Med.getRom().get(ouv));
                                                         Med.ajouteResa(Resa);
+                                                        clear();
                                                         System.out.println("Réservation réussie.");
                                                 }
                                                 else
@@ -392,6 +387,7 @@ public class Projet_Mediatheque
                                                 {
                                                         Reservation Resa=new Reservation(Adh, Med.getCD().get(ouv));
                                                         Med.ajouteResa(Resa);
+                                                        clear();
                                                         System.out.println("Réservation réussie.");
                                                 }
                                                 else
@@ -443,6 +439,7 @@ public class Projet_Mediatheque
 			if(AdhEmp.get(id).toString().equals(Med.getEmp().get(i).toString()))
 			{
 				Med.supprimeEmprunt(i);
+                                clear();
 				System.out.println("L'ouvrage a été rendu !");
 				return;
 			} 
@@ -485,6 +482,7 @@ public class Projet_Mediatheque
 			if(AdhResa.get(id).toString().equals(Med.getResa().get(i).toString()))
 			{
 				Med.supprimeReservation(i);
+                                clear();
 				System.out.println("La réservation a été annulée !");
 				return;
 			} 
@@ -586,10 +584,10 @@ public class Projet_Mediatheque
                                 break;
                         }
                 }
+                clear();
                 System.out.println("Liste des Ouvrages:");
                 for(int i=0; i<liste.size(); i++)
                 {
-                        System.out.println("Test");
                         System.out.println(liste.get(i).toString());
                 }
         }
