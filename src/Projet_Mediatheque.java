@@ -15,7 +15,7 @@ public class Projet_Mediatheque
                                 + "\t2-S'inscrire.\n"
                                 + "\t3-Quitter le logiciel.");
                         int logIn=Lire.i();
-                        Personne Utilisateur = null;
+                        Personne Utilisateur;
                         switch(logIn)
                         {
                                 case 1:
