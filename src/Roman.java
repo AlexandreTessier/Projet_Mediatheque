@@ -1,3 +1,5 @@
+import java.time.*;
+
 public class Roman extends Ouvrage
 {
 	private int nombre_pages;
@@ -14,27 +16,22 @@ public class Roman extends Ouvrage
 		this.genre = pGenre;
 	}
 	//Methode toString()
-        @Override
 	public String toString()
 	{
-                return "Numero : "+this.numero+"; Titre : "+this.titre+"; Auteur : "+this.auteur.toString()+"; Disponibilité : "+this.disponibilite+"Genre : " + this.genre;
+		return "Titre : " + this.titre + "; Genre : " + this.genre;
 	}
         
-        @Override
         public int getNum(){
                 return this.numero;
         }
-        @Override
         public String getTitre()
         {
                 return this.titre;
         }
-        @Override
         public Auteur getAut()
         {
                 return this.auteur;
         }
-        @Override
         public String getEdit()
         {
                 return this.editeur;
@@ -47,22 +44,14 @@ public class Roman extends Ouvrage
         {
                 return this.genre;
         }
-        @Override
         public boolean getDispo()
         {
                 return this.disponibilite;
         }
-        @Override
-        public String getType()
-        {
-                return "Roman";
-        }
-        @Override
         public void nonDispo()
         {
                 this.disponibilite=false;
         }
-        @Override
         public void dispo()
         {
                 this.disponibilite=true;

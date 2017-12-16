@@ -184,11 +184,47 @@ public class Projet_Mediatheque
         //Menu qui apparaît si l'utilisateur est un bibliothécaire
         public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
         {
-                clear();
-                System.out.println("BONJOUR JE SUIS UNE PUTAIN DE MEDIATHEQUE");
-                //Ajouter un ouvrage
-                //Supprimer ouvrage: troll on ne peut pas car j'ai mal programmé la gestion des numéros des bouquins
-		System.out.println();
+                boolean Quitter=false;
+                while(!Quitter)
+                {
+                        clear();
+                        System.out.println("Bonjour, "+Bib.getPrenom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
+                                + "\t1-Créer bibliothécaire.\n"
+                                + "\t2-Changer mot de passe administrateur.\n"
+                                + "\t3-Supprimer adhérent.\n"
+                                + "\t4-Ajouter ouvrage.\n"
+                                + "\t5-Se déconnecter.");
+                        int Choix=Lire.i();
+                        switch(Choix)
+                        {
+                                case 1:
+                                        creerBib(Med, Bib);
+                                break;
+                                case 2:
+                                        if(Bib.getprenom().equals("Admin"))
+                                        {
+						changerAdmMdp(Med,Bib);
+					}
+					else
+					{
+						System.out.println("Accès refusé, vous n'êtes pas administrateur");
+					}
+                                break;
+                                case 3:
+                                        supprimeAdh(Med); 
+                                break;
+                                case 4:
+                                        ajouteOuvrage(Med);
+                                break;
+                                case 5:
+                                        Quitter=true;
+                                        System.out.println("Vous avez été déconnecté avec succès.");
+                                break;
+                                default:
+                                        System.out.println("Commande non-reconnue, veuillez ré-essayer.");
+                                break;
+                        }
+                }
         }
 	//Methode qui nettoie l'affichage
 	public static void clear()
