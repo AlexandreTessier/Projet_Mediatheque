@@ -391,7 +391,7 @@ public class Projet_Mediatheque
         public static void rendre(Mediatheque Med, Adherent Adh)
         {
 		ArrayList<Emprunt> AdhEmp = afficherListeEmprunts(Med,Adh);
-		if(AdhEmp.size()==0)
+		if(AdhEmp.isEmpty())
 		{
 			System.out.println("Aucun emprunt !");
 			return;
