@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Mediatheque
 {
         private ArrayList<Adherent> Adherents;
-        private ArrayList<Bibliothecaire> Bibliothecaires;
         private ArrayList<Auteur> Auteurs;
         private ArrayList<Roman> Romans;
         private ArrayList<CD> CDs;
@@ -20,14 +19,12 @@ public class Mediatheque
         public Mediatheque() throws IOException
         {
                 this.Adherents = new ArrayList();
-                this.Bibliothecaires = new ArrayList();
                 this.Auteurs = new ArrayList();
                 this.Romans = new ArrayList();
                 this.CDs = new ArrayList();
                 this.Emprunts = new ArrayList();
                 this.Reservations = new ArrayList();
                 this.recupeAdh();
-                this.recupeBib();
                 this.recupeAut();
                 this.recupeRom();
                 this.recupeCD();
@@ -38,10 +35,6 @@ public class Mediatheque
         public ArrayList<Adherent> getAdh()
         {
                 return this.Adherents;
-        }
-        public ArrayList<Bibliothecaire> getBib()
-        {
-                return this.Bibliothecaires;
         }
         public ArrayList<Auteur> getAut()
         {
@@ -103,44 +96,6 @@ public class Mediatheque
                         System.out.println ("Le fichier n'a pas été trouvé");
                 }
         }
-        
-        public void recupeBib()
-        {
-                try
-                {
-                        File f = new File ("Bibliothecaires.txt");
-                        FileReader fr = new FileReader (f);
-                        BufferedReader br = new BufferedReader (fr);
-                        try
-                        {
-                                String line = br.readLine();
-                                line = br.readLine();
-                                while (line != null)
-                                {
-                                        String[] Temp = line.split("\t");
-                                        String[] pDate = Temp[2].split("-");
-                                        int year = Integer.parseInt(pDate[0]);
-                                        int month = Integer.parseInt(pDate[1]);
-                                        int day = Integer.parseInt(pDate[2]);
-                                        LocalDate date = LocalDate.of(year, month, day);
-                                        Bibliothecaire Bi = new Bibliothecaire(Temp[0], Temp[1], date, Temp[3], Temp[4]);
-                                        this.Bibliothecaires.add(Bi);
-                                        line = br.readLine();
-                                }
-                                br.close();
-                                fr.close();
-                        }
-                        catch (IOException exception)
-                        {
-                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
-                        }
-                }
-                catch (FileNotFoundException exception)
-                {
-                        System.out.println ("Le fichier n'a pas été trouvé");
-                }
-        }
-        
         public void recupeAut()
         {
                 try
@@ -335,7 +290,6 @@ public class Mediatheque
         public void ecriture()
         {
                 this.ecritureAdh();
-                this.ecritureBib();
                 this.ecritureAut();
                 this.ecritureRom();
                 this.ecritureCD();
@@ -365,42 +319,6 @@ public class Mediatheque
                                         String pID = Integer.toString(this.Adherents.get(i).getNum());
                                         String pTel = this.Adherents.get(i).getTel();
                                         line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP+"\t"+pID+"\t"+pTel;
-                                        br.write(line);
-                                }
-                                br.close();
-                                fr.close();
-                        }
-                        catch (IOException exception)
-                        {
-                                System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
-                        }
-                }
-                catch (IOException exception)
-                {
-                        System.out.println ("Le fichier n'a pas été trouvé");
-                }
-        }
-        
-        public void ecritureBib()
-        {
-                try
-                {
-                        File f = new File ("Bibliothecaires.txt");
-                        FileWriter fr = new FileWriter (f);
-                        BufferedWriter br = new BufferedWriter (fr);
-                        try
-                        {
-                                String line = "Nom\tPrenom\tDate_Naissance\tMail\tMdP";
-                                br.write(line);
-                                for(int i=0; i<this.Bibliothecaires.size(); i++)
-                                {
-                                        br.newLine();
-                                        String pNom = this.Bibliothecaires.get(i).getNom();
-                                        String pPrenom = this.Bibliothecaires.get(i).getPrenom();
-                                        String pDate = this.Bibliothecaires.get(i).getdate().toString();
-                                        String pMail = this.Bibliothecaires.get(i).getMail();
-                                        String pMDP = this.Bibliothecaires.get(i).getMDP();
-                                        line = pNom+"\t"+pPrenom+"\t"+pDate+"\t"+pMail+"\t"+pMDP;
                                         br.write(line);
                                 }
                                 br.close();

@@ -20,19 +20,12 @@ public class Projet_Mediatheque
                         {
                                 case 1:
                                         Utilisateur = logIn(Med);
-                                        if(Utilisateur instanceof Adherent)
-                                        {
-                                                clear();
-                                                menuAdherent(Med, (Adherent)Utilisateur);
-                                        }
-                                        else
-                                        {
-                                                clear();
-                                                menuBibliothecaire(Med, (Bibliothecaire)Utilisateur);
-                                        }
+                                        clear();
+                                        menuAdherent(Med, (Adherent)Utilisateur);
                                 break;
                                 case 2:
                                         Utilisateur = signIn(Med);
+                                        clear();
                                         menuAdherent(Med, (Adherent)Utilisateur);
                                 break;
                                 case 3:
@@ -56,13 +49,6 @@ public class Projet_Mediatheque
                         String eMail=Lire.S();
                         System.out.println("Veuillez donner votre mot de passe");
                         String mdP=Lire.S();
-                        for(int i=0; i<Med.getBib().size(); i++)
-                        {
-                                if(eMail.equals(Med.getBib().get(i).getMail()) && mdP.equals(Med.getBib().get(i).getMDP()))
-                                        {
-                                                return Med.getBib().get(i);
-                                        }
-                        }
                         for(int i=0; i<Med.getAdh().size(); i++)
                         {
                                 if(eMail.equals(Med.getAdh().get(i).getMail()) && mdP.equals(Med.getAdh().get(i).getMDP()))
@@ -96,13 +82,6 @@ public class Projet_Mediatheque
                         bool=false;
                         System.out.println("Veuillez donner votre mail");
                         eMail=Lire.S();
-                        for(int i=0; i<Med.getBib().size(); i++)
-                        {
-                                if(eMail.equals(Med.getBib().get(i).getMail()))
-                                {
-                                        bool=true;
-                                }
-                        }
                         for(int i=0; i<Med.getAdh().size(); i++)
                         {
                                 if(eMail.equals(Med.getAdh().get(i).getMail()))
@@ -182,50 +161,6 @@ public class Projet_Mediatheque
                         }
                 }
 	}
-        //Menu qui apparaît si l'utilisateur est un bibliothécaire
-        public static void menuBibliothecaire(Mediatheque Med, Bibliothecaire Bib)
-        {
-                boolean Quitter=false;
-                while(!Quitter)
-                {
-                        System.out.println("Bonjour, "+Bib.getPrenom()+". Vous êtes sur le menu de la médiathèque, veuillez indiquer votre choix d'opération.\n"
-                                + "\t1-Créer bibliothécaire.\n"
-                                + "\t2-Changer mot de passe administrateur.\n"
-                                + "\t3-Supprimer adhérent.\n"
-                                + "\t4-Ajouter ouvrage.\n"
-                                + "\t5-Se déconnecter.");
-                        int Choix=Lire.i();
-                        /*switch(Choix)
-                        {
-                                case 1:
-                                        creerBib(Med, Bib);
-                                break;
-                                case 2:
-                                        if(Bib.getprenom().equals("Admin"))
-                                        {
-						changerAdmMdp(Med,Bib);
-					}
-					else
-					{
-						System.out.println("Accès refusé, vous n'êtes pas administrateur");
-					}
-                                break;
-                                case 3:
-                                        supprimeAdh(Med); 
-                                break;
-                                case 4:
-                                        ajouteOuvrage(Med);
-                                break;
-                                case 5:
-                                        Quitter=true;
-                                        System.out.println("Vous avez été déconnecté avec succès.");
-                                break;
-                                default:
-                                        System.out.println("Commande non-reconnue, veuillez ré-essayer.");
-                                break;
-                        }*/
-                }
-        }
 	//Methode qui nettoie l'affichage
 	public static void clear()
 	{
