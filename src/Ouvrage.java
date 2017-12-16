@@ -10,7 +10,6 @@ public abstract class Ouvrage
 	public abstract String toString();
         public abstract int getNum();
         public abstract String getTitre();
-        public abstract String getType();
         public abstract Auteur getAut();
         public abstract String getEdit();
         public abstract boolean getDispo();
