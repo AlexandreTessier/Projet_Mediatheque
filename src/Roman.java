@@ -18,7 +18,7 @@ public class Roman extends Ouvrage
 	//Methode toString()
 	public String toString()
 	{
-		return "[Roman] Titre: "+this.titre+"; Auteur :"+this.auteur+"; Genre: " + this.genre+"; Editeur: "+this.editeur+"; Disponibilité: "+this.disponibilite;
+		return "[Roman] Titre: "+this.titre+"; Auteur: "+this.auteur+"; Genre: " + this.genre+"; Editeur: "+this.editeur+"; Disponibilité: "+this.disponibilite;
 	}
         
         public int getNum(){
