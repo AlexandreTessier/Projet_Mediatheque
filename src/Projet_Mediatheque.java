@@ -437,13 +437,13 @@ public class Projet_Mediatheque
                                         System.out.println("Veuillez donner le prénom puis le nom de l'Auteur:");
                                         String prenom=Lire.S();
                                         String nom=Lire.S();
-                                        for(int j=0; j<liste.size(); j++)
+                                        for(int i=0; i<liste.size(); i++)
                                         {
-                                                if(!liste.get(j).getAut().getPrenom().equals(prenom))
+                                                if(!liste.get(i).getAut().getPrenom().equals(prenom))
                                                 {
-                                                        if(!liste.get(j).getAut().getNom().equals(nom))
+                                                        if(!liste.get(i).getAut().getNom().equals(nom))
                                                         {
-                                                                liste.remove(j);
+                                                                liste.remove(i);
                                                         }
                                                 }
                                         }
@@ -453,21 +453,21 @@ public class Projet_Mediatheque
                                         int type=Lire.i();
                                         if(type==1)
                                         {
-                                                for(int j=0; j<liste.size(); j++)
+                                                for(int i=0; i<liste.size(); i++)
                                                 {
-                                                        if(!liste.get(j).getType().equals("Roman"))
+                                                        if(liste.get(i) instanceof CD)
                                                         {
-                                                                liste.remove(j);
+                                                                liste.remove(i);
                                                         }
                                                 }
                                         }
-                                        else
+                                        else if (type==2)
                                         {
-                                                for(int j=0; j<liste.size(); j++)
+                                                for(int i=0; i<liste.size(); i++)
                                                 {
-                                                        if(!liste.get(j).getType().equals("CD"))
+                                                        if(liste.get(i) instanceof Roman)
                                                         {
-                                                                liste.remove(j);
+                                                                liste.remove(i);
                                                         }
                                                 }
                                         }
@@ -475,32 +475,32 @@ public class Projet_Mediatheque
                                 case 3:
                                         System.out.println("Veuillez donner le titre de l'Ouvrage.");
                                         String titre=Lire.S();
-                                        for(int j=0; j<liste.size(); j++)
+                                        for(int i=0; i<liste.size(); i++)
                                         {
-                                                if(!liste.get(j).getTitre().equals(titre))
+                                                if(!liste.get(i).getTitre().equals(titre))
                                                 {
-                                                        liste.remove(j);
+                                                        liste.remove(i);
                                                 }
                                         }
                                 break;
                                 case 4:
                                         System.out.println("La recherche n'affichera que des Ouvrages disponibles.");
-                                        for(int j=0; j<liste.size(); j++)
+                                        for(int i=0; i<liste.size(); i++)
                                         {
-                                                if(!liste.get(j).getDispo())
+                                                if(!liste.get(i).getDispo())
                                                 {
-                                                        liste.remove(j);
+                                                        liste.remove(i);
                                                 }
                                         }
                                 break;
                                 case 5:
                                         System.out.println("Veuillez donner l'éditeur de l'Ouvrage");
                                         String editeur=Lire.S();
-                                        for(int j=0; j<liste.size(); j++)
+                                        for(int i=0; i<liste.size(); i++)
                                         {
-                                                if(!liste.get(j).getEdit().equals(editeur))
+                                                if(!liste.get(i).getEdit().equals(editeur))
                                                 {
-                                                        liste.remove(j);
+                                                        liste.remove(i);
                                                 }
                                         }
                                 break;
@@ -512,6 +512,7 @@ public class Projet_Mediatheque
                 System.out.println("Liste des Ouvrages:");
                 for(int i=0; i<liste.size(); i++)
                 {
+                        System.out.println("Test");
                         System.out.println(liste.get(i).toString());
                 }
         }
