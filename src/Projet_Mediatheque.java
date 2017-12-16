@@ -168,8 +168,7 @@ public class Projet_Mediatheque
                                         rendre(Med,Adh);
                                 break;
                                 case 5:
-                                        //Affiche les réservations
-                                        //Annule la résa grâce à son num
+                                        annulerReservation(Med,Adh);
                                 break;
                                 case 6:
                                         Quitter=true;
@@ -195,7 +194,7 @@ public class Projet_Mediatheque
                                 + "\t4-Ajouter ouvrage.\n"
                                 + "\t5-Se déconnecter.");
                         int Choix=Lire.i();
-                        switch(Choix)
+                        /*switch(Choix)
                         {
                                 case 1:
                                         creerBib(Med, Bib);
@@ -223,7 +222,7 @@ public class Projet_Mediatheque
                                 default:
                                         System.out.println("Commande non-reconnue, veuillez ré-essayer.");
                                 break;
-                        }
+                        }*/
                 }
         }
 	//Methode qui nettoie l'affichage
@@ -444,7 +443,49 @@ public class Projet_Mediatheque
 			if(AdhEmp.get(id).toString().equals(Med.getEmp().get(i).toString()))
 			{
 				Med.supprimeEmprunt(i);
-				System.out.println("L'ouvrage a été rendu !'");
+				System.out.println("L'ouvrage a été rendu !");
+				return;
+			} 
+		}
+		        
+        }
+        //Methode qui affiche toutes les réservations d'un adherent et génére une liste de ces réservations 
+        public static ArrayList<Reservation> afficherListeReservations(Mediatheque Med, Adherent Adh)
+        {
+		ArrayList<Reservation> AdhResa = new ArrayList();
+		System.out.println("Réservations de : " + Adh.toString());
+		for(int i=0; i<Med.getResa().size();i++ )
+		{
+			if(Med.getResa().get(i).getAdh().getNum()==Adh.getNum())
+			{
+				System.out.println("["+AdhResa.size()+"]" + Med.getResa().get(i).getOuv().toString());
+				AdhResa.add(Med.getResa().get(i));
+			}
+		}
+		return AdhResa;
+        }
+        //Methode qui permet a adherent de rendre un ouvrage
+        public static void annulerReservation(Mediatheque Med, Adherent Adh)
+        {
+		ArrayList<Reservation> AdhResa = afficherListeReservations(Med,Adh);
+		if(AdhResa.isEmpty())
+		{
+			System.out.println("Aucune réservation !");
+			return;
+		}
+		System.out.println("Quelle réservation souhaitez-vous annuler ? (entrez le numéro correspondant) ");
+		int id = Lire.i();
+		while(id>=AdhResa.size())
+		{
+			System.out.println("La réservation que vous avez demandée n'existe pas !");
+			id = Lire.i();
+		}
+		for(int i=0; i<Med.getResa().size();i++)
+		{
+			if(AdhResa.get(id).toString().equals(Med.getResa().get(i).toString()))
+			{
+				Med.supprimeReservation(i);
+				System.out.println("La réservation a été annulée !");
 				return;
 			} 
 		}

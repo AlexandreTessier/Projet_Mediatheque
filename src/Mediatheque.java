@@ -724,6 +724,11 @@ public class Mediatheque
 		this.Emprunts.remove(index);
         }
         
+        public void supprimeReservation(int index)
+        {
+                this.Reservations.remove(index);
+        }
+        
         public boolean resaPossible(Ouvrage Ouv, String pString)
         {
                 for(int i=0; i<this.Reservations.size(); i++)
