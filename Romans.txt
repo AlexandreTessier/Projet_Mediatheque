@@ -1,4 +1,4 @@
-﻿Numéro	Titre	numAut	Editeur	NombrePages	Genre	Disponibilité
+Numéro	Titre	numAut	Editeur	NombrePages	Genre	Disponibilité
 1	Roman1	1	Moi	42	Fantastique	false
 2	Roman2	1	Moi	42	Fantastique	true
 3	Roman3	1	Nous	42	Fantastique	true

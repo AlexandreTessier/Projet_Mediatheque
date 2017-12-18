@@ -460,7 +460,8 @@ public class Projet_Mediatheque
                 ArrayList<Ouvrage> liste2=new ArrayList();
                 liste.addAll(Med.getRom());
                 liste.addAll(Med.getCD());
-                liste2=liste;
+                liste2.addAll(liste);
+                int Taille=liste.size();
                 boolean T=true;
                 while(T)
                 {
@@ -478,7 +479,7 @@ public class Projet_Mediatheque
                                         System.out.println("Veuillez donner le prénom puis le nom de l'Auteur:");
                                         String prenom=Lire.S();
                                         String nom=Lire.S();
-                                        for(int i=0; i<liste.size(); i++)
+                                        for(int i=0; i<Taille; i++)
                                         {
                                                 if(!liste.get(i).getAut().getPrenom().equals(prenom))
                                                 {
@@ -494,7 +495,7 @@ public class Projet_Mediatheque
                                         int type=Lire.i();
                                         if(type==1)
                                         {
-                                                for(int i=0; i<liste.size(); i++)
+                                                for(int i=0; i<Taille; i++)
                                                 {
                                                         if(liste.get(i) instanceof CD)
                                                         {
@@ -504,7 +505,7 @@ public class Projet_Mediatheque
                                         }
                                         else if (type==2)
                                         {
-                                                for(int i=0; i<liste.size(); i++)
+                                                for(int i=0; i<Taille; i++)
                                                 {
                                                         if(liste.get(i) instanceof Roman)
                                                         {
@@ -516,7 +517,7 @@ public class Projet_Mediatheque
                                 case 3:
                                         System.out.println("Veuillez donner le titre de l'Ouvrage.");
                                         String titre=Lire.S();
-                                        for(int i=0; i<liste.size(); i++)
+                                        for(int i=0; i<Taille; i++)
                                         {
                                                 if(!liste.get(i).getTitre().equals(titre))
                                                 {
@@ -526,7 +527,7 @@ public class Projet_Mediatheque
                                 break;
                                 case 4:
                                         System.out.println("La recherche n'affichera que des Ouvrages disponibles.");
-                                        for(int i=0; i<liste.size(); i++)
+                                        for(int i=0; i<Taille; i++)
                                         {
                                                 if(!liste.get(i).getDispo())
                                                 {
@@ -537,7 +538,7 @@ public class Projet_Mediatheque
                                 case 5:
                                         System.out.println("Veuillez donner l'éditeur de l'Ouvrage");
                                         String editeur=Lire.S();
-                                        for(int i=0; i<liste.size(); i++)
+                                        for(int i=0; i<Taille; i++)
                                         {
                                                 if(!liste.get(i).getEdit().equals(editeur))
                                                 {
