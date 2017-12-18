@@ -1,0 +1,7 @@
+Nom	Prenom	Date_Naissance	Mail	MdP	ID	Tel
+Tessier	Alexandre	1998-12-14	at@free	123	1	602315993
+Tes	Al	1998-12-14	a@fe	159159	2	0606060606
+A	D	1998-12-01	a@fg	123456789	3	15161811888
+B	B	1998-12-14	bb@gmail.com	12345	4	0665256
+Alexa	EAex	1998-12-15	Alexa.EAex@gmail.com	159159159	5	0606060606
+MonNOm	MonPrenom	1500-12-15	prenom.nom@mail.com	motdepasse	6	n

@@ -6,6 +6,7 @@ public class Projet_Mediatheque
 {
 	public static void main(String[] args) throws IOException 
 	{
+		clear();
 		Mediatheque Med = new Mediatheque();
                 boolean Quitter=false;
                 while(!Quitter)
@@ -131,7 +132,7 @@ public class Projet_Mediatheque
                                 + "\t3-Effectuer une recherche.\n"
                                 + "\t4-Rendre un ouvrage.\n"
                                 + "\t5-Annuler une réservation.\n"
-                                + "\t6-Prolonger un emprunt"
+                                + "\t6-Prolonger un emprunt.\n"
                                 + "\t7-Se déconnecter.");
                         int Choix=Lire.i();
                         switch(Choix)
@@ -174,6 +175,7 @@ public class Projet_Mediatheque
         //Methode qui vérifie les possibilités d'emprunt, et qui rajoute un emprunt si possible
         public static void emprunter(Mediatheque Med, Adherent Adh)
         {
+                clear();
                 boolean T = true;
                 int nbreEmprunts=0, choix=0;
                 String S="";
@@ -217,7 +219,7 @@ public class Projet_Mediatheque
                                 switch(choix)
                                 {
                                         case 1:
-                                                if(Med.contientRom(num))
+                                               if(Med.contientRom(num))
                                                 {
                                                         T=Med.romanNum(num).getDispo();
                                                         if(T)
@@ -265,6 +267,7 @@ public class Projet_Mediatheque
         //Methode qui vérifie les possibilités de réservation, et qui rajoute une réservation si possible
         public static void reserver(Mediatheque Med, Adherent Adh)
         {
+                clear();
                 int nbreResa=0;
                 if(Med.comparerDatesEmprunts(Adh))
                 {
@@ -360,6 +363,7 @@ public class Projet_Mediatheque
         //Methode qui permet a adherent de rendre un ouvrage
         public static void rendre(Mediatheque Med, Adherent Adh)
         {
+		clear();
 		ArrayList<Emprunt> AdhEmp = afficherListeEmprunts(Med,Adh);
 		if(AdhEmp.isEmpty())
 		{
@@ -386,6 +390,7 @@ public class Projet_Mediatheque
         }
         public static void prolonger(Mediatheque Med, Adherent Adh)
         {
+                clear();
                 ArrayList<Emprunt> AdhEmp = afficherListeEmprunts(Med,Adh);
                 if(AdhEmp.isEmpty())
 		{
@@ -428,6 +433,7 @@ public class Projet_Mediatheque
         //Methode qui permet a adherent de rendre un ouvrage
         public static void annulerReservation(Mediatheque Med, Adherent Adh)
         {
+		clear();
 		ArrayList<Reservation> AdhResa = afficherListeReservations(Med,Adh);
 		if(AdhResa.isEmpty())
 		{
@@ -456,6 +462,7 @@ public class Projet_Mediatheque
         //Methode qui recherche des ouvrages selon les caractéristiques demandées
        public static void recherche(Mediatheque Med)
         {
+                clear();
                 ArrayList<Ouvrage> liste=new ArrayList();
                 ArrayList<Ouvrage> liste2=new ArrayList();
                 liste.addAll(Med.getRom());
