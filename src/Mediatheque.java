@@ -146,7 +146,7 @@ public class Mediatheque
                                 line = br.readLine();
                                 while (line != null)
                                 {
-                                        String[] Temp = line.split("\t");
+                                        String[] Temp = line.split("   ");
                                         int pNum = Integer.parseInt(Temp[0]);
                                         Auteur pAut = this.rechercheAuteur(Integer.parseInt(Temp[2]));
                                         int nombrePages = Integer.parseInt(Temp[4]);
@@ -182,7 +182,7 @@ public class Mediatheque
                                 line = br.readLine();
                                 while (line != null)
                                 {
-                                        String[] Temp = line.split("\t");
+                                        String[] Temp = line.split("   ");
                                         int pNum = Integer.parseInt(Temp[0]);
                                         Auteur pAut = this.rechercheAuteur(Integer.parseInt(Temp[2]));
                                         boolean bool = Boolean.parseBoolean(Temp[4]);
@@ -392,7 +392,7 @@ public class Mediatheque
                                         String pNbre = Integer.toString(this.Romans.get(i).getNbre());
                                         String pGenre = this.Romans.get(i).getGenre();
                                         String pDispo = Boolean.toString(this.Romans.get(i).getDispo());
-                                        line = pNum+"\t"+pTitre+"\t"+pAut+"\t"+pEdit+"\t"+pNbre+"\t"+pGenre+"\t"+pDispo;
+                                        line = pNum+"   "+pTitre+"   "+pAut+"   "+pEdit+"   "+pNbre+"   "+pGenre+"   "+pDispo;
                                         br.write(line);
                                 }
                                 br.close();
@@ -431,9 +431,9 @@ public class Mediatheque
                                         String pListe = "";
                                         for(int j=0; j<this.CDs.get(i).getListe().size(); j++)
                                         {
-                                                pListe = pListe+"\t"+this.CDs.get(i).getListe().get(j);
+                                                pListe = pListe+"   "+this.CDs.get(i).getListe().get(j);
                                         }
-                                        line = pNum+"\t"+pTitre+"\t"+pAut+"\t"+pEdit+"\t"+pDispo+pListe;
+                                        line = pNum+"   "+pTitre+"   "+pAut+"   "+pEdit+"   "+pDispo+pListe;
                                         br.write(line);
                                 }
                                 br.close();
